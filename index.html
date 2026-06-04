@@ -1635,6 +1635,7 @@ function autoSaveCurrentHoleIfBlank() {
   APP.myScores[i] = { stroke: par, putt: 2 };
   // 通信はさせますが、関数の中身を呼び出して読み込みを完遂させます
 saveScoreImmediate(i);
+}
 function saveScoreImmediate(i) {
   callGAS('updateScore', [{
     playerId: APP.me.playerId,
