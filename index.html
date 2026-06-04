@@ -47,10 +47,10 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .vspar.bogey{background:linear-gradient(135deg,#5dade2,#2980b9);color:#fff;}
 .vspar.dbogey{background:linear-gradient(135deg,#bb8fce,#8e44ad);color:#fff;}
 .vspar.over{background:#444;color:#fff;}
-.me-bar{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.35);border-radius:14px;padding:14px 16px;margin-bottom:14px;border:1px solid rgba(245,200,66,0.3);}
-.me-bar .lbl{font-size:11px;color:var(--text-sub);font-weight:600;}
-.me-bar .v1{font-size:16px;font-weight:800;}
-.me-bar .v2{font-size:22px;font-weight:900;color:var(--gold);}
+.me-bar{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.45);border-radius:14px;padding:16px 18px;margin-bottom:14px;border:2px solid rgba(245,200,66,0.5);}
+.me-bar .lbl{font-size:12px;color:var(--text-sub);font-weight:600;}
+.me-bar .v1{font-size:20px;font-weight:800;}
+.me-bar .v2{font-size:26px;font-weight:900;color:var(--gold);}
 .lb-tabs{display:flex;gap:6px;margin-bottom:12px;background:rgba(0,0,0,0.25);padding:5px;border-radius:12px;}
 .lb-tabs button{flex:1;padding:12px 6px;font-size:13px;font-weight:700;border:0;border-radius:8px;background:transparent;color:#fff;min-height:46px;}
 .lb-tabs button.active{background:linear-gradient(180deg,var(--gold-bri),var(--gold));color:#000;}
@@ -116,12 +116,99 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .mode-badge.comp{background:#e74c3c;color:#fff;}
 .mode-badge.pro{background:#bb8fce;color:#fff;}
 .locked-info{background:rgba(0,0,0,0.4);border-left:4px solid var(--gold);padding:12px;border-radius:8px;margin-bottom:12px;font-size:14px;}
-.mate-table-wrap{margin-top:14px;background:rgba(0,0,0,0.35);border-radius:14px;padding:12px;overflow-x:auto;}
-.mate-table{width:100%;border-collapse:collapse;min-width:680px;font-size:12px;}
-.mate-table th,.mate-table td{border:1px solid rgba(255,255,255,0.18);padding:5px 4px;text-align:center;color:#fff;}
-.mate-table th.hole-h{cursor:pointer;color:var(--gold-bri);text-decoration:underline;}
-.mate-table tr.me td{background:rgba(212,175,55,.15);}
-.mate-table tr.par-row td{background:linear-gradient(180deg,#2a2a2a,#1f1f1f);color:var(--gold-bri);font-weight:900;}
+
+/* ===== 【v4.4 大改造】巨大スコア表（老眼対応） ===== */
+.mate-table-wrap{
+  margin-top:14px;
+  background:rgba(0,0,0,0.4);
+  border-radius:16px;
+  padding:14px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scroll-behavior:smooth;
+  border:2px solid rgba(245,200,66,0.35);
+}
+.mate-table-wrap h4{
+  font-size:16px;
+  margin:0 0 10px;
+  color:var(--gold-bri);
+}
+.mate-table{
+  width:auto;
+  border-collapse:separate;
+  border-spacing:0;
+  min-width:100%;
+  font-size:22px;
+}
+.mate-table th,.mate-table td{
+  border:1px solid rgba(255,255,255,0.25);
+  padding:14px 10px;
+  text-align:center;
+  color:#fff;
+  min-width:64px;
+  font-weight:700;
+}
+.mate-table th{
+  background:rgba(0,0,0,0.5);
+  font-size:20px;
+  color:var(--gold-bri);
+}
+.mate-table th.hole-h{
+  cursor:pointer;
+  font-weight:900;
+}
+.mate-table th.hole-h.current-h{
+  background:linear-gradient(180deg,var(--gold-bri),var(--gold));
+  color:#000;
+  box-shadow:0 0 12px rgba(245,200,66,0.7);
+}
+.mate-table td.current-c{
+  background:rgba(245,200,66,0.28);
+  font-weight:900;
+  font-size:26px;
+  box-shadow:inset 0 0 0 2px var(--gold);
+}
+.mate-table td.player-name-cell{
+  text-align:left;
+  font-size:18px;
+  font-weight:800;
+  min-width:140px;
+  background:rgba(0,0,0,0.3);
+  color:var(--gold-bri);
+  position:sticky;
+  left:0;
+  z-index:5;
+}
+.mate-table tr.me td.player-name-cell{
+  background:linear-gradient(90deg,rgba(212,175,55,0.45),rgba(0,0,0,0.5));
+  color:#fff;
+}
+.mate-table tr.me td{
+  background:rgba(212,175,55,.18);
+}
+.mate-table tr.me td.current-c{
+  background:rgba(245,200,66,0.45);
+}
+.mate-table tr.par-row td{
+  background:linear-gradient(180deg,#2a2a2a,#1f1f1f);
+  color:var(--gold-bri);
+  font-weight:900;
+  font-size:20px;
+}
+.mate-table tr.par-row td.current-c{
+  background:linear-gradient(180deg,#3a3a1a,#2a2a0a);
+}
+.mate-table td.total-col{
+  background:rgba(0,0,0,0.55);
+  color:var(--gold-bri);
+  font-weight:900;
+  font-size:24px;
+  position:sticky;
+  right:0;
+  z-index:4;
+}
+
 .hole-zoom-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;}
 .hole-zoom-overlay.show{display:flex;}
 .hole-zoom-card{background:linear-gradient(145deg,var(--card),rgba(20,20,20,0.95));border:2px solid var(--gold);border-radius:24px;padding:24px;width:100%;max-width:420px;text-align:center;}
@@ -196,14 +283,13 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .score-settings-acc-body .mode-switcher,.score-settings-acc-body .display-mode-switcher{margin-bottom:8px;}
 .score-settings-acc-body .display-mode-switcher:last-child{margin-bottom:0;}
 
-/* ===== v4.3 追加CSS ===== */
 .player-tabs{display:flex;gap:6px;background:rgba(0,0,0,0.4);padding:6px;border-radius:12px;margin-bottom:10px;overflow-x:auto;border:2px solid rgba(245,200,66,0.4);}
 .player-tabs button{flex:1;min-width:80px;padding:10px 8px;border:0;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;min-height:46px;}
 .player-tabs button.active{background:linear-gradient(180deg,var(--gold-bri),var(--gold));color:#000;}
 .player-tabs button.locked{opacity:0.5;cursor:not-allowed;background:rgba(120,120,120,0.3);}
 .player-tabs button .lock-mark{font-size:10px;display:block;color:#ff7466;margin-top:2px;}
-.scorecard-tap{background:linear-gradient(135deg,rgba(0,0,0,0.45),rgba(0,0,0,0.3));border:1px dashed rgba(245,200,66,0.5);border-radius:12px;padding:8px;margin-bottom:12px;text-align:center;font-size:12px;color:var(--gold-bri);cursor:pointer;}
-.confirm-bar{display:flex;gap:8px;margin-top:14px;background:rgba(0,0,0,0.4);padding:10px;border-radius:14px;border:1px solid rgba(245,200,66,0.4);}
+
+.confirm-bar{display:flex;gap:8px;margin-top:6px;margin-bottom:14px;background:rgba(0,0,0,0.4);padding:10px;border-radius:14px;border:1px solid rgba(245,200,66,0.4);}
 .confirm-bar button{flex:1;padding:14px 8px;border:0;border-radius:10px;font-weight:800;font-size:14px;min-height:52px;cursor:pointer;}
 .confirm-bar .btn-finish{background:linear-gradient(180deg,var(--gold-bri),var(--gold));color:#000;}
 .confirm-bar .btn-backup{background:rgba(93,173,226,0.8);color:#fff;}
@@ -234,6 +320,13 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .quick-screen .hero p{margin:0;font-size:13px;color:var(--text-sub);}
 .qr-big{background:#fff;padding:14px;border-radius:14px;display:inline-block;margin-top:12px;}
 .qr-big img{display:block;width:240px;height:240px;}
+
+/* 【v4.4】下部の設定エリア(タブ・アコーディオン) */
+.bottom-settings-area{
+  margin-top:24px;
+  padding-top:14px;
+  border-top:2px dashed rgba(245,200,66,0.3);
+}
 </style>
 </head>
 <body>
@@ -277,61 +370,75 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 </div>
 
 <div id="screen-main" class="hidden">
-<div class="nav">
-<button id="tab-score" class="active" onclick="showTab('score')">スコア入力</button>
-<button id="tab-lb" onclick="showTab('lb')">ランキング</button>
-<button id="tab-hist" onclick="showTab('hist')">履歴</button>
-</div>
 
 <div id="tab-content-score">
-  <!-- 【v4.3】プレイヤー選択タブ（最上部） -->
+
+  <!-- ============================================
+       【最上部】プレイヤー名・現在スコア表示
+       ============================================ -->
+  <div class="me-bar">
+    <div><div class="lbl">プレイヤー</div><div class="v1" id="me-name">-</div></div>
+    <div style="text-align:right;"><div class="lbl">合計 / PAR差</div><div class="v2" id="me-total">- / -</div></div>
+  </div>
+
+  <!-- プレイヤー選択タブ(複数担当時のみ) -->
   <div id="player-tabs-wrap" class="hidden">
     <div style="font-size:11px;color:var(--gold-bri);font-weight:700;margin-bottom:4px;">入力対象プレイヤー</div>
     <div class="player-tabs" id="player-tabs"></div>
   </div>
 
-  <div id="score-settings-acc" class="score-settings-acc">
-    <div class="score-settings-acc-header" onclick="toggleScoreSettingsAcc()">
-      <span class="score-settings-acc-title" id="score-settings-acc-title">設定・モード切替(開く)</span>
-      <span class="score-settings-acc-arrow">▼</span>
+  <div id="invite-qr-card" class="invite-qr-card hidden">
+    <div class="qbox"><img id="invite-qr-img" src="" alt="招待QR"></div>
+    <div class="qtxt"><b>この組に同伴者を招待</b><div style="font-size:12px;color:var(--text-sub);margin-top:4px;">スキャンで同じ組に合流</div><small id="invite-qr-url">-</small></div>
+  </div>
+
+  <!-- ============================================
+       【2番目】打数・パット数の入力パネル + 巨大スコア表（一体化エリア）
+       ============================================ -->
+  <div id="hole-list"></div>
+
+  <!-- ============================================
+       【4番目】終了して確定 / 手動バックアップ
+       ============================================ -->
+  <div class="confirm-bar">
+    <button class="btn-finish" onclick="confirmFinishRound()">✅ 終了して確定</button>
+    <button class="btn-backup" onclick="manualBackupNow()">💾 手動バックアップ</button>
+  </div>
+
+  <!-- ============================================
+       【最下部】タブ + 設定・モード切替アコーディオン
+       ============================================ -->
+  <div class="bottom-settings-area">
+    <div class="nav">
+      <button id="tab-score" class="active" onclick="showTab('score')">スコア入力</button>
+      <button id="tab-lb" onclick="showTab('lb')">ランキング</button>
+      <button id="tab-hist" onclick="showTab('hist')">履歴</button>
     </div>
-    <div class="score-settings-acc-body">
-      <div class="mode-switcher">
-        <label>入力モード</label>
-        <select id="mode-select" onchange="onModeChange(this.value)">
-          <option value="par_diff">パー基準±</option>
-          <option value="counter">シンプルカウンター</option>
-          <option value="stroke">ストローク専用</option>
-          <option value="detail">詳細ログ</option>
-        </select>
-        <button class="ghost" style="padding:8px 12px;min-height:40px;font-size:12px;" onclick="openMyClubEditor()" id="club-edit-btn">クラブ</button>
+
+    <div id="score-settings-acc" class="score-settings-acc">
+      <div class="score-settings-acc-header" onclick="toggleScoreSettingsAcc()">
+        <span class="score-settings-acc-title" id="score-settings-acc-title">設定・モード切替(開く)</span>
+        <span class="score-settings-acc-arrow">▼</span>
       </div>
-      <div class="display-mode-switcher">
-        <button id="disp-mode-stroke" class="active" onclick="setDisplayMode('stroke')">数字</button>
-        <button id="disp-mode-pardiff" onclick="setDisplayMode('pardiff')">±表記</button>
-        <button id="disp-mode-symbol" onclick="setDisplayMode('symbol')">記号</button>
+      <div class="score-settings-acc-body">
+        <div class="mode-switcher">
+          <label>入力モード</label>
+          <select id="mode-select" onchange="onModeChange(this.value)">
+            <option value="par_diff">パー基準±</option>
+            <option value="counter">シンプルカウンター</option>
+            <option value="stroke">ストローク専用</option>
+            <option value="detail">詳細ログ</option>
+          </select>
+          <button class="ghost" style="padding:8px 12px;min-height:40px;font-size:12px;" onclick="openMyClubEditor()" id="club-edit-btn">クラブ</button>
+        </div>
+        <div class="display-mode-switcher">
+          <button id="disp-mode-stroke" class="active" onclick="setDisplayMode('stroke')">数字</button>
+          <button id="disp-mode-pardiff" onclick="setDisplayMode('pardiff')">±表記</button>
+          <button id="disp-mode-symbol" onclick="setDisplayMode('symbol')">記号</button>
+        </div>
       </div>
     </div>
   </div>
-
-<div class="me-bar">
-<div><div class="lbl">プレイヤー</div><div class="v1" id="me-name">-</div></div>
-<div style="text-align:right;"><div class="lbl">合計 / 消化PAR</div><div class="v2" id="me-total">- / -</div></div>
-</div>
-
-<div id="invite-qr-card" class="invite-qr-card hidden">
-<div class="qbox"><img id="invite-qr-img" src="" alt="招待QR"></div>
-<div class="qtxt"><b>この組に同伴者を招待</b><div style="font-size:12px;color:var(--text-sub);margin-top:4px;">スキャンで同じ組に合流</div><small id="invite-qr-url">-</small></div>
-</div>
-
-<!-- 【v4.3】入力パネル → スコアカード の順（スクロール削減） -->
-<div id="hole-list"></div>
-
-<!-- 【v4.3】最下部：終了して確定 + 手動バックアップ -->
-<div class="confirm-bar">
-  <button class="btn-finish" onclick="confirmFinishRound()">✅ 終了して確定</button>
-  <button class="btn-backup" onclick="manualBackupNow()">💾 手動バックアップ</button>
-</div>
 
 </div>
 
@@ -396,7 +503,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 </div>
 </div>
 
-<!-- 【v4.3】爆速スタート画面 -->
 <div id="screen-quick-start" class="hidden">
   <div class="quick-screen">
     <div class="hero">
@@ -427,7 +533,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
   </div>
 </div>
 
-<!-- 【v4.3】チェックイン完了画面 -->
 <div id="screen-checkin" class="hidden">
   <div class="checkin-screen">
     <div class="icon-ok">✓</div>
@@ -450,7 +555,7 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 </div>
 </div>
 
-<!-- 【v4.3】スコアカード拡大ポップアップ -->
+<!-- ホール別ズーム（タップで個別ホール詳細） -->
 <div id="holeZoomOverlay" class="hole-zoom-overlay" onclick="closeHoleZoom()">
 <div class="hole-zoom-card" onclick="event.stopPropagation()">
 <div class="hz-num" id="hzNum">1H</div>
@@ -458,15 +563,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 <div class="hz-list" id="hzList"></div>
 <button class="ghost" style="width:100%;margin-top:20px;" onclick="closeHoleZoom()">閉じる</button>
 </div>
-</div>
-
-<!-- 【v4.3】スコアカード全体拡大表示（タップで拡大） -->
-<div id="scorecardZoomOverlay" class="hole-zoom-overlay" onclick="closeScorecardZoom()">
-  <div class="hole-zoom-card" onclick="event.stopPropagation()" style="max-width:95vw;max-height:90vh;overflow:auto;">
-    <h3 style="margin:0 0 10px;color:var(--gold);">スコアカード(拡大)</h3>
-    <div id="scorecardZoomBody" style="font-size:18px;"></div>
-    <button class="ghost" style="width:100%;margin-top:14px;" onclick="closeScorecardZoom()">× 閉じる</button>
-  </div>
 </div>
 
 <div class="modal-bg" id="modal-pwa">
@@ -485,7 +581,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 </div>
 </div>
 
-<!-- 【v4.3】ラウンド管理モーダル -->
 <div class="modal-bg" id="modal-round-mgr">
   <div class="modal" style="max-width:680px;">
     <h3>🏆 ラウンド管理</h3>
@@ -556,7 +651,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
   </div>
 </div>
 
-<!-- 【既存】主催者メニュー(維持) -->
 <div class="modal-bg" id="modal-admin">
 <div class="modal">
 <h3>主催者メニュー</h3>
@@ -640,7 +734,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 </div>
 </div>
 
-<!-- 【v4.3】確認ポップアップ -->
 <div class="modal-bg" id="modal-confirm">
   <div class="modal" style="max-width:420px;">
     <h3 id="confirm-title">確認</h3>
@@ -656,8 +749,9 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 
 <script>
 /* ==========================================================================
- * G-LAND v4.3 フロントエンド
- * - 既存機能を完全維持しつつ、追加機能を統合
+ * G-LAND v4.4 フロントエンド
+ * 【UI大改造】上下逆転 + スコア表巨大化 + 現在ホール自動センター
+ * ※ 裏側ロジックは完全維持
  * ========================================================================== */
 const APP = {
   courses:[], activeCourseId:'', periaHoles:[], pars:[], prizes:[], isFinalized:false,
@@ -674,21 +768,20 @@ const APP = {
   historyData: { list: [], stats: {} },
   historyExpanded: {},
   bootReady: false,
-  // v4.3新規
   roundId: '',
   roundType: '',
   roundInfo: null,
   groupAssignments: { list: [], byGroup: {} },
-  myAssignedPlayers: [],   // このリーダー/ユーザーが担当するプレイヤー一覧
-  currentPlayerIdx: 0,     // プレイヤータブの選択インデックス
-  playerScoresMap: {},     // playerId => scores配列
-  lockStatus: {},          // playerId => lock情報
+  myAssignedPlayers: [],
+  currentPlayerIdx: 0,
+  playerScoresMap: {},
+  lockStatus: {},
   deviceId: '',
   quickGroupCount: 1,
   privGroupCount: 1,
   pendingConfirm: null,
   assignDragData: null,
-  assignBuckets: {},       // groupNo => [members]
+  assignBuckets: {},
   assignFriendPool: []
 };
 
@@ -763,9 +856,6 @@ function getOrCreateDeviceId() {
   return d;
 }
 
-/* ==========================================================================
- * 起動シーケンス
- * ========================================================================== */
 window.addEventListener('load', function() {
   console.log('[BOOT] window.load - start');
   APP.deviceId = getOrCreateDeviceId();
@@ -902,13 +992,11 @@ async function routeAfterBoot() {
   var p = parseUrlParams();
   var saved = localStorage.getItem('gland_me');
 
-  // 【v4.3】mode=quick → 爆速モード起動
   if (p.mode === 'quick') {
     openQuickStart();
     return;
   }
 
-  // 【v4.3】checkin=1 → 自動チェックイン
   if (p.checkin === '1' && (p.round_id || p.room_id)) {
     var roundId = p.round_id || p.room_id;
     await doAutoCheckin(roundId, p.course_id || '');
@@ -990,9 +1078,6 @@ function handleInviteParams(p) {
   }
 }
 
-/* ==========================================================================
- * 【重要】画面切替（重なり防止）
- * ========================================================================== */
 function hideAllScreens() {
   ['screen-register','screen-main','screen-private-room','screen-quick-start','screen-checkin']
     .forEach(function(id) {
@@ -1097,7 +1182,6 @@ function register() {
     toast('全項目を入力してください');
     return;
   }
-  // ローカル保存（2回目以降の簡略化用）
   localStorage.setItem('gland_profile', JSON.stringify({
     nickname: nickname, realName: realName, affiliation: groupName
   }));
@@ -1140,7 +1224,6 @@ function enterMain() {
   }
   updateDisplayModeButtons();
 
-  // 【v4.3】担当プレイヤーリストの構築
   APP.myAssignedPlayers = [{
     playerId: APP.me.playerId,
     nickname: APP.me.nickname,
@@ -1159,6 +1242,8 @@ function enterMain() {
     APP.currentHole = 0;
     renderHoles();
     buildHolePicker();
+    // 初期表示時に自動センター
+    setTimeout(centerCurrentHoleInTable, 300);
   });
 }
 
@@ -1255,9 +1340,6 @@ function refreshAllScoreDisplays() {
   }
 }
 
-/* ==========================================================================
- * 【v4.3】プレイヤータブ
- * ========================================================================== */
 function renderPlayerTabs() {
   var wrap = document.getElementById('player-tabs-wrap');
   var tabsEl = document.getElementById('player-tabs');
@@ -1281,19 +1363,16 @@ function renderPlayerTabs() {
 function switchPlayer(idx) {
   if (idx < 0 || idx >= APP.myAssignedPlayers.length) return;
   var target = APP.myAssignedPlayers[idx];
-  // 排他チェック
   var lock = APP.lockStatus[target.playerId];
   if (lock && lock.holderDevice !== APP.deviceId && lock.expiresAt > Date.now()) {
     toast('他端末で入力中です');
     return;
   }
   APP.currentPlayerIdx = idx;
-  // 現在のmeをスイッチ
   APP.me.playerId = target.playerId;
   APP.me.nickname = target.nickname;
   APP.me.realName = target.realName || target.nickname;
   document.getElementById('me-name').textContent = (target.realName || target.nickname);
-  // スコア再読込
   if (APP.playerScoresMap[target.playerId]) {
     APP.myScores = APP.playerScoresMap[target.playerId];
     renderHoles();
@@ -1310,7 +1389,6 @@ function switchPlayer(idx) {
       renderPlayerTabs();
     });
   }
-  // ロック取得
   acquirePlayerLock(target.playerId);
 }
 
@@ -1336,14 +1414,13 @@ function acquirePlayerLock(playerId) {
   });
 }
 
-// 定期的にロック更新
 setInterval(function() {
   if (!APP.me || !APP.me.playerId) return;
   acquirePlayerLock(APP.me.playerId);
 }, 30000);
 
 /* ==========================================================================
- * Holes rendering
+ * Holes rendering（上下逆転対応＋巨大スコア表）
  * ========================================================================== */
 function renderHoles() {
   if (!APP.me || !APP.me.playerId) {
@@ -1372,9 +1449,10 @@ function renderHoles() {
   var prevDisabled = (i === 0) ? 'disabled' : '';
   var nextDisabled = (i === 17) ? 'disabled' : '';
 
+  // 【UI改造】2番目: 入力パネル → ナビ → 3番目: 巨大スコア表
   var html =
     '<div>' +
-      // 入力パネル（上）
+      // 入力パネル
       '<div class="hole-card" id="hc-' + i + '">' +
         '<div class="hole-head">' +
           '<div class="hole-no">' + (i+1) + 'H</div>' +
@@ -1385,15 +1463,14 @@ function renderHoles() {
       '</div>' +
       // ナビゲーション
       '<div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:10px;">' +
-        '<button class="ghost" style="flex:1;" onclick="prevHole()" ' + prevDisabled + '>&lt; 前</button>' +
-        '<div style="flex:0 0 90px;text-align:center;font-size:14px;font-weight:700;color:var(--gold-bri);background:rgba(0,0,0,0.35);padding:10px;border-radius:10px;">' + (i+1) + ' / 18 H</div>' +
-        '<button class="ghost" style="flex:1;" onclick="nextHole()" ' + nextDisabled + '>次 &gt;</button>' +
+        '<button class="ghost" style="flex:1;font-size:18px;font-weight:900;min-height:60px;" onclick="prevHole()" ' + prevDisabled + '>&lt; 前</button>' +
+        '<div style="flex:0 0 100px;text-align:center;font-size:16px;font-weight:700;color:var(--gold-bri);background:rgba(0,0,0,0.35);padding:10px;border-radius:10px;">' + (i+1) + ' / 18 H</div>' +
+        '<button class="ghost" style="flex:1;font-size:18px;font-weight:900;min-height:60px;" onclick="nextHole()" ' + nextDisabled + '>次 &gt;</button>' +
       '</div>' +
-      // スコアカード(タップで拡大)
-      '<div class="scorecard-tap" onclick="openScorecardZoom()">👆 タップでスコアカード拡大表示</div>' +
-      '<div class="mate-table-wrap" onclick="openScorecardZoom()" style="cursor:pointer;">' +
-        '<h4 style="margin:0 0 8px;color:var(--gold-bri);">同伴メンバー スコア表</h4>' +
-        '<div id="mate-table-body"><div style="color:var(--text-sub);font-size:12px;padding:6px;">読み込み中...</div></div>' +
+      // 巨大スコア表（拡大ボタンは廃止）
+      '<div class="mate-table-wrap" id="mate-table-wrap">' +
+        '<h4 style="margin:0 0 10px;color:var(--gold-bri);">同伴メンバー スコア表（横スクロール可）</h4>' +
+        '<div id="mate-table-body"><div style="color:var(--text-sub);font-size:14px;padding:10px;">読み込み中...</div></div>' +
       '</div>' +
     '</div>';
   document.getElementById('hole-list').innerHTML = html;
@@ -1573,11 +1650,21 @@ function saveScoreImmediate(i) {
 }
 function prevHole() {
   autoSaveCurrentHoleIfBlank();
-  if (APP.currentHole > 0) { APP.currentHole--; renderHoles(); }
+  if (APP.currentHole > 0) {
+    APP.currentHole--;
+    renderHoles();
+    // 【自動センター】前へボタン
+    setTimeout(centerCurrentHoleInTable, 100);
+  }
 }
 function nextHole() {
   autoSaveCurrentHoleIfBlank();
-  if (APP.currentHole < 17) { APP.currentHole++; renderHoles(); }
+  if (APP.currentHole < 17) {
+    APP.currentHole++;
+    renderHoles();
+    // 【自動センター】次へボタン
+    setTimeout(centerCurrentHoleInTable, 100);
+  }
 }
 
 function buildHolePicker() {
@@ -1609,6 +1696,7 @@ function jumpToHole(idx) {
   APP.currentHole = Math.max(0, Math.min(17, Number(idx) || 0));
   closeHolePicker();
   renderHoles();
+  setTimeout(centerCurrentHoleInTable, 100);
 }
 
 var _mateTimer = null;
@@ -1622,7 +1710,7 @@ function renderGroupMatesTable(data) {
   var body = document.getElementById('mate-table-body');
   if (!body) return;
   if (!data || !data.members || !data.members.length) {
-    body.innerHTML = '<div style="color:var(--text-sub);font-size:12px;padding:6px;">同伴メンバーなし</div>';
+    body.innerHTML = '<div style="color:var(--text-sub);font-size:14px;padding:10px;">同伴メンバーなし</div>';
     return;
   }
   var pars = data.pars || APP.pars;
@@ -1637,40 +1725,64 @@ function renderGroupMatesTable(data) {
   });
   APP.groupMatesData = members;
 
-  var head = '<tr><th>プレイヤー</th>';
+  var head = '<tr><th class="player-name-cell" style="text-align:center;">プレイヤー</th>';
   for (var k = 0; k < 18; k++) {
-    var hi = (k === cur) ? ' style="background:rgba(245,200,66,0.7);color:#000;"' : '';
-    head += '<th class="hole-h" onclick="event.stopPropagation();openHoleZoom(' + (k+1) + ')"' + hi + '>' + (k+1) + '</th>';
+    var hi = (k === cur) ? ' current-h' : '';
+    head += '<th class="hole-h hole-col-' + k + hi + '" onclick="event.stopPropagation();openHoleZoom(' + (k+1) + ')">' + (k+1) + 'H</th>';
   }
-  head += '<th style="color:var(--gold-bri);">計</th></tr>';
+  head += '<th class="total-col">計</th></tr>';
 
-  var parRow = '<tr class="par-row"><td>PAR</td>';
+  var parRow = '<tr class="par-row"><td class="player-name-cell">PAR</td>';
   var parSum = 0;
   for (var k2 = 0; k2 < 18; k2++) {
-    parRow += '<td>' + pars[k2] + '</td>';
+    var pcls = (k2 === cur) ? ' current-c' : '';
+    parRow += '<td class="hole-col-' + k2 + pcls + '">' + pars[k2] + '</td>';
     parSum += pars[k2];
   }
-  parRow += '<td>' + parSum + '</td></tr>';
+  parRow += '<td class="total-col">' + parSum + '</td></tr>';
 
-  // スコアカードには本名を表示
   var rows = members.map(function(m) {
     var total = 0;
     var trClass = m.isMe ? ' class="me"' : '';
-    var starMark = m.isMe ? '* ' : '';
+    var starMark = m.isMe ? '★ ' : '';
     var displayName = m.realName || m.nickname;
-    var tds = '<td>' + starMark + escapeHtml(displayName) + '</td>';
+    var tds = '<td class="player-name-cell">' + starMark + escapeHtml(displayName) + '</td>';
     for (var k3 = 0; k3 < 18; k3++) {
       var v = m.strokes[k3] || 0;
       total += v;
       var display = v > 0 ? formatScoreByMode(v, pars[k3]) : '-';
-      var st = (k3 === cur) ? ' style="background:rgba(245,200,66,0.25);font-weight:900;"' : '';
-      tds += '<td' + st + '>' + display + '</td>';
+      var st = (k3 === cur) ? ' current-c' : '';
+      tds += '<td class="hole-col-' + k3 + st + '">' + display + '</td>';
     }
-    tds += '<td style="background:rgba(0,0,0,0.45);font-weight:900;color:var(--gold-bri);">' + (total || '-') + '</td>';
+    tds += '<td class="total-col">' + (total || '-') + '</td>';
     return '<tr' + trClass + '>' + tds + '</tr>';
   }).join('');
 
   body.innerHTML = '<table class="mate-table">' + head + parRow + rows + '</table>';
+
+  // 【自動センター】テーブル描画完了後に呼ぶ
+  setTimeout(centerCurrentHoleInTable, 50);
+}
+
+/* ==========================================================================
+ * 【v4.4 新規】現在ホール自動センター合わせ
+ * 巨大スコア表の中で、現在ホールの列を表示領域中央に持ってくる
+ * ========================================================================== */
+function centerCurrentHoleInTable() {
+  try {
+    var wrap = document.getElementById('mate-table-wrap');
+    if (!wrap) return;
+    var cur = APP.currentHole;
+    var th = wrap.querySelector('th.hole-col-' + cur);
+    if (!th) return;
+    var wrapRect = wrap.getBoundingClientRect();
+    var thRect = th.getBoundingClientRect();
+    // スクロール先 = 列の左位置 - (表示幅 / 2) + (列幅 / 2)
+    var targetLeft = wrap.scrollLeft + (thRect.left - wrapRect.left) - (wrap.clientWidth / 2) + (thRect.width / 2);
+    wrap.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+  } catch(e) {
+    console.warn('[centerCurrentHoleInTable] err:', e);
+  }
 }
 
 function openHoleZoom(holeNo) {
@@ -1682,7 +1794,7 @@ function openHoleZoom(holeNo) {
   (APP.groupMatesData || []).forEach(function(m) {
     var stroke = m.strokes[idx] || 0;
     var meCls = m.isMe ? ' me' : '';
-    var star = m.isMe ? '* ' : '';
+    var star = m.isMe ? '★ ' : '';
     var displayName = m.realName || m.nickname;
     html += '<div class="hz-row' + meCls + '"><div class="n">' + star + escapeHtml(displayName) + '</div><div class="s">' + (stroke > 0 ? stroke : '-') + '</div></div>';
   });
@@ -1692,46 +1804,8 @@ function openHoleZoom(holeNo) {
 }
 function closeHoleZoom() { document.getElementById('holeZoomOverlay').classList.remove('show'); }
 
-/* 【v4.3】スコアカード全体拡大 */
-function openScorecardZoom() {
-  var body = document.getElementById('scorecardZoomBody');
-  if (!APP.groupMatesData || !APP.groupMatesData.length) {
-    body.innerHTML = '<div style="color:var(--text-sub);text-align:center;padding:20px;">表示するスコアがありません</div>';
-  } else {
-    var pars = APP.pars;
-    var head = '<tr><th>プレイヤー</th>';
-    for (var k = 0; k < 18; k++) head += '<th>' + (k+1) + '</th>';
-    head += '<th>計</th></tr>';
-    var parRow = '<tr style="background:#222;color:var(--gold-bri);font-weight:900;"><td>PAR</td>';
-    var parSum = 0;
-    for (var k2 = 0; k2 < 18; k2++) { parRow += '<td>' + pars[k2] + '</td>'; parSum += pars[k2]; }
-    parRow += '<td>' + parSum + '</td></tr>';
-    var rows = APP.groupMatesData.map(function(m) {
-      var total = 0;
-      var disp = m.realName || m.nickname;
-      var tr = '<tr><td><b>' + escapeHtml(disp) + '</b></td>';
-
- for (var k3 = 0; k3 < 18; k3++) {
-        var v = m.strokes[k3] || 0;
-        total += v;
-        tr += '<td>' + (v > 0 ? v : '-') + '</td>';
-      }
-      tr += '<td style="color:var(--gold-bri);font-weight:900;">' + (total || '-') + '</td></tr>';
-      return tr;
-    }).join('');
-    body.innerHTML = '<table style="width:100%;border-collapse:collapse;font-size:16px;text-align:center;" border="1">' +
-      head + parRow + rows + '</table>';
-  }
-  document.getElementById('scorecardZoomOverlay').classList.add('show');
-  haptic();
-}
-function closeScorecardZoom() {
-  document.getElementById('scorecardZoomOverlay').classList.remove('show');
-}
-
 function chgStroke(i, delta) {
   if (APP.isFinalized) { toast('編集不可'); return; }
-  // 排他チェック
   var lk = APP.lockStatus[APP.me.playerId];
   if (lk && lk.holderDevice !== APP.deviceId && lk.expiresAt > Date.now()) {
     toast('他端末で入力中です');
@@ -1858,6 +1932,7 @@ function showTab(t) {
   document.getElementById('fab-jump').classList.toggle('hidden', t !== 'score');
   if (t === 'lb') loadLeaderboard();
   if (t === 'hist') { buildHistoryCourseFilter(); loadHistory(); }
+  if (t === 'score') setTimeout(centerCurrentHoleInTable, 200);
 }
 
 function loadLeaderboard() {
@@ -1895,7 +1970,6 @@ function renderLeaderboard() {
     return;
   }
 
-  // リーダーボードはニックネーム表示
   var html = list.map(function(p, idx) {
     var rankCls = idx < 3 ? 'rank' + (idx + 1) : '';
     if (APP.lbMode === 'group') {
@@ -2116,7 +2190,6 @@ function buildHistoryDetailHtml(detail) {
   detail.mates.forEach(function(m) {
     var cls = m.isPrimary ? ' class="primary"' : '';
     var star = m.isPrimary ? '* ' : '';
-    // 履歴詳細も本名優先
     var dispName = m.realName || m.nickname || '(名前なし)';
     var row = '<tr' + cls + '><td>' + star + escapeHtml(dispName) + '</td>';
     var sum = 0;
@@ -2167,7 +2240,6 @@ function finishRound() {
   });
 }
 
-/* 【v4.3】確認ポップアップ付き終了確定 */
 function confirmFinishRound() {
   if (!APP.me || !APP.me.playerId) { toast('プレイヤー情報なし'); return; }
   var playedHoles = APP.myScores.filter(function(s) { return s.stroke > 0; }).length;
@@ -2185,7 +2257,6 @@ function confirmFinishRound() {
       }
       toast('✅ 確定完了 (' + res.totalStroke + '打)');
       haptic();
-      // ロック解放
       callGAS('releaseScoreLock', [{
         playerId: APP.me.playerId,
         userId: APP.me.userId || '',
@@ -2197,7 +2268,6 @@ function confirmFinishRound() {
   });
 }
 
-/* 【v4.3】手動バックアップ */
 function manualBackupNow() {
   if (!APP.me || !APP.me.playerId) { toast('プレイヤー情報なし'); return; }
   toast('バックアップ中...');
@@ -2218,7 +2288,6 @@ function manualBackupNow() {
   });
 }
 
-/* 【v4.3】確認ダイアログ汎用 */
 function openConfirm(title, body, cb) {
   document.getElementById('confirm-title').textContent = title || '確認';
   document.getElementById('confirm-body').innerHTML = escapeHtml(body || '').replace(/\n/g, '<br>');
@@ -2637,9 +2706,6 @@ function _closeClubEditor() {
   if (w) w.remove();
 }
 
-/* ==========================================================================
- * 【v4.3】隠しメニュー(ロゴ3回タップ)
- * ========================================================================== */
 var tapCount = 0;
 var tapResetTimer = null;
 document.addEventListener('click', function(e) {
@@ -2651,7 +2717,6 @@ document.addEventListener('click', function(e) {
       var secret = document.getElementById('secret-header-btns');
       if (secret) {
         secret.classList.remove('hidden');
-        // 主催者ボタンも表示
         var orgBtn = document.getElementById('organizer-btn');
         if (orgBtn) orgBtn.style.display = 'inline-block';
       }
@@ -2661,9 +2726,6 @@ document.addEventListener('click', function(e) {
   }
 });
 
-/* ==========================================================================
- * 【v4.3】ラウンド管理モーダル
- * ========================================================================== */
 function openRoundManager() {
   document.getElementById('modal-round-mgr').classList.add('show');
   populateCourseDropdowns();
@@ -2779,9 +2841,6 @@ function copyToClip(text) {
   }
 }
 
-/* ==========================================================================
- * 【v4.3】組分け(D&D)
- * ========================================================================== */
 function loadAssignRound() {
   var roundId = document.getElementById('rm-assign-round').value;
   var area = document.getElementById('rm-assign-area');
@@ -2802,7 +2861,6 @@ function loadAssignRound() {
       area.innerHTML = '<div style="color:#ff8888;">ラウンド情報取得失敗</div>';
       return;
     }
-    // プライベート1組 → スキップ
     if (roundInfo.autoSkipAssign) {
       area.innerHTML = '<div style="background:rgba(245,200,66,0.2);border:1px solid var(--gold);border-radius:10px;padding:14px;text-align:center;">' +
         '<b style="color:var(--gold);">爆速モード（1組のみ）</b><br>' +
@@ -2812,12 +2870,10 @@ function loadAssignRound() {
 
     APP.assignRoundInfo = roundInfo;
     APP.assignFriendPool = (friendRes && friendRes.list) ? friendRes.list : [];
-    // バケット初期化
     APP.assignBuckets = {};
     var groupCount = roundInfo.groupCount || 1;
     for (var g = 1; g <= groupCount; g++) APP.assignBuckets[g] = [];
 
-    // 既存割当を反映
     if (assignRes && assignRes.ok && assignRes.list) {
       assignRes.list.forEach(function(a) {
         if (!APP.assignBuckets[a.groupNo]) APP.assignBuckets[a.groupNo] = [];
@@ -2997,9 +3053,6 @@ function saveAssignments() {
   });
 }
 
-/* ==========================================================================
- * 【v4.3】爆速モード
- * ========================================================================== */
 function openQuickStart() {
   showQuickStartScreen();
   populateCourseDropdowns();
@@ -3043,20 +3096,15 @@ function proceedToCheckinFromQuick() {
   doAutoCheckin(APP.roundId, document.getElementById('quick-course').value || '');
 }
 
-/* ==========================================================================
- * 【v4.3】QRチェックイン
- * ========================================================================== */
 async function doAutoCheckin(roundId, courseId) {
   showCheckinScreen();
   document.getElementById('checkin-info').innerHTML = '<div>受付処理中...</div>';
 
-  // ローカルプロフィール
   var profile = {};
   try {
     profile = JSON.parse(localStorage.getItem('gland_profile') || '{}');
   } catch(e) {}
 
-  // 初回 → 氏名/ニックネーム/所属を要求
   if (!profile.nickname || !profile.realName) {
     document.getElementById('checkin-info').innerHTML =
       '<div style="text-align:left;">' +
@@ -3068,7 +3116,6 @@ async function doAutoCheckin(roundId, courseId) {
     return;
   }
 
-  // 2回目以降 → ローカル情報で即チェックイン
   await performCheckin(roundId, profile);
 }
 
@@ -3114,7 +3161,6 @@ async function performCheckin(roundId, profile) {
       '<div style="margin-top:6px;color:var(--gold);">所属: ' + escapeHtml(res.groupName || '未割当') + '</div>' +
       '<div style="margin-top:14px;color:var(--text-sub);font-size:12px;">3秒後にスコア入力画面へ遷移します...</div>';
 
-    // APP.me セット
     APP.me = {
       playerId: res.playerId,
       userId: res.userId || userId,
@@ -3132,7 +3178,6 @@ async function performCheckin(roundId, profile) {
     localStorage.setItem('gland_me', JSON.stringify(APP.me));
     localStorage.setItem('gland_player_id', res.playerId);
 
-    // コース反映
     var courseObj = APP.courses.find(function(c) { return c.id === res.courseId; });
     if (courseObj) APP.pars = courseObj.pars;
 
@@ -3145,6 +3190,20 @@ async function performCheckin(roundId, profile) {
       '<button class="ghost" style="width:100%;margin-top:10px;" onclick="backToRegister()">戻る</button>';
   }
 }
+
+/* ==========================================================================
+ * 【v4.4 追加】画面リサイズ・回転時にも自動センター追従
+ * ========================================================================== */
+window.addEventListener('resize', function() {
+  if (APP.me && APP.me.playerId) {
+    setTimeout(centerCurrentHoleInTable, 150);
+  }
+});
+window.addEventListener('orientationchange', function() {
+  if (APP.me && APP.me.playerId) {
+    setTimeout(centerCurrentHoleInTable, 300);
+  }
+});
 
 </script>
 </body>
