@@ -2644,7 +2644,8 @@ document.addEventListener('click', function(e) {
     if (!document.getElementById('quick-mode-btn-hidden')) {
       var btn = document.createElement('button');
       btn.id = 'quick-mode-btn-hidden';
-      btn.style.cssText = 'display:none;background:linear-gradient(180deg,#ff6348,#ff4757);color:#fff;border:0;padding:10px 16px;border-radius:10px;font-weight:800;font-size:13px;margin-left:6px;box-shadow:0 3px 0 #c0392b;';
+      // margin-left を少し小さくし、padding も調整して省スペース化
+      btn.style.cssText = 'display:none;background:linear-gradient(180deg,#ff6348,#ff4757);color:#fff;border:0;padding:8px 12px;border-radius:10px;font-weight:800;font-size:12px;margin-left:4px;box-shadow:0 2px 0 #c0392b;';
       btn.textContent = '⚡ 爆速モード';
       btn.onclick = function() {
         showQuickStartScreen();
