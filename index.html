@@ -1633,7 +1633,12 @@ function autoSaveCurrentHoleIfBlank() {
   if (APP.inputMode === 'counter') return;
   var par = APP.pars[i] || 4;
   APP.myScores[i] = { stroke: par, putt: 2 };
-  saveScoreImmediate(i);
+  // 画面表示は即時更新されるので、セーブは裏側で勝手にやらせる！
+(function(i) {
+    setTimeout(function() {
+        saveScoreImmediate(i);
+    }, 100); 
+})(i);
 }
 function saveScoreImmediate(i) {
   callGAS('updateScore', [{
