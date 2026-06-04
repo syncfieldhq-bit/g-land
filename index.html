@@ -244,7 +244,7 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 <div style="color:white;padding:10px;text-align:center;font-weight:bold;">
 <span style="color:#f5c842;font-weight:bold;">コース:</span> <span id="course-name" style="font-weight:bold;"></span> <span style="color:rgba(255,255,255,0.4);margin:0 6px;">|</span> <span style="color:#f5c842;font-weight:bold;">組:</span> <span id="group-name" style="font-weight:bold;"></span>
 </div>
-<header style="display:flex; align-items:center; justify-content:space-between; position:relative;">
+<header style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:5px; position:relative;">
   <h1 id="logo" style="margin:0;">G-LAND <span id="fin-badge" class="badge-fin hidden">確定</span><span id="mode-badge"></span></h1>
   <button onclick="toggleInviteQR()" id="invite-toggle-btn" style="position:absolute; left:50%; transform:translateX(-50%); font-size:11px; padding:6px 12px; border-radius:12px; background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.5);">同伴招待QR</button>
   <button id="organizer-btn" class="menu-btn" onclick="openAdmin()" style="display:none; margin:0;">主催者</button>
