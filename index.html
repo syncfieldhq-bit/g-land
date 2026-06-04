@@ -2700,27 +2700,6 @@ function _closeClubEditor() {
   var w = document.getElementById('myclub-editor-wrap');
   if (w) w.remove();
 }
-
-var tapCount = 0;
-var tapResetTimer = null;
-document.addEventListener('click', function(e) {
-  if (e.target.closest('#logo')) {
-    tapCount++;
-    clearTimeout(tapResetTimer);
-    tapResetTimer = setTimeout(function() { tapCount = 0; }, 1500);
-    if (tapCount === 3) {
-      var secret = document.getElementById('secret-header-btns');
-      if (secret) {
-        secret.classList.remove('hidden');
-        var orgBtn = document.getElementById('organizer-btn');
-        if (orgBtn) orgBtn.style.display = 'inline-block';
-      }
-      tapCount = 0;
-      toast('🔓 隠しメニューを表示しました');
-    }
-  }
-});
-
 function openRoundManager() {
   document.getElementById('modal-round-mgr').classList.add('show');
   populateCourseDropdowns();
