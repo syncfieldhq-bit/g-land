@@ -244,10 +244,13 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 <div style="color:white;padding:10px;text-align:center;font-weight:bold;">
 <span style="color:#f5c842;font-weight:bold;">コース:</span> <span id="course-name" style="font-weight:bold;"></span> <span style="color:rgba(255,255,255,0.4);margin:0 6px;">|</span> <span style="color:#f5c842;font-weight:bold;">組:</span> <span id="group-name" style="font-weight:bold;"></span>
 </div>
-<header style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:5px; position:relative;">
+<header style="display:flex; align-items:center; justify-content:space-between; position:relative; padding: 10px;">
   <h1 id="logo" style="margin:0;">G-LAND <span id="fin-badge" class="badge-fin hidden">確定</span><span id="mode-badge"></span></h1>
-  <button onclick="toggleInviteQR()" id="invite-toggle-btn" style="position:absolute; left:50%; transform:translateX(-50%); font-size:11px; padding:6px 12px; border-radius:12px; background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.5);">同伴招待QR</button>
-  <button id="organizer-btn" class="menu-btn" onclick="openAdmin()" style="display:none; margin:0;">主催者</button>
+  
+  <div id="secret-header-btns" style="display:none; gap:5px;">
+    <button onclick="toggleInviteQR()" id="invite-toggle-btn" class="menu-btn">同伴招待</button>
+    <button id="organizer-btn" class="menu-btn" onclick="openAdmin()">主催者</button>
+  </div>
 </header>
 
 <div class="container">
@@ -380,7 +383,7 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
      【Phase 1 NEW】爆速スタート画面（主催者用）
      表示条件: ?mode=quick もしくは新規ルーム作成導線
      ============================================================ -->
-<div id="screen-quick-start" class="hidden">
+<div id="screen-quick-start">
   <div class="quick-start-card">
     <div style="text-align:center;">
       <span class="speed-badge">⚡ 爆速スタートモード</span>
@@ -2634,32 +2637,31 @@ window.addEventListener('load', function() {
   setTimeout(function() { clearInterval(phase1RouteTimer); }, 8000);
 });
 
-/**
- * 主催者用：トリプルタップ後の隠しメニューに「爆速モード」エントリを追加
- * （既存のtapCount=3で organizer-btn を出す挙動はそのまま温存）
- */
+// =========================================================
+// 【Phase 1】 3回タップで「爆速モード」と「通常管理モード」を切り替え
+// =========================================================
 document.addEventListener('click', function(e) {
   if (e.target.closest('#logo')) {
-    // 既存のtapCount判定とは別系統で爆速ボタンも出現させる
-    if (!document.getElementById('quick-mode-btn-hidden')) {
-      var btn = document.createElement('button');
-      btn.id = 'quick-mode-btn-hidden';
-      // margin-left を少し小さくし、padding も調整して省スペース化
-      btn.style.cssText = 'display:none;background:linear-gradient(180deg,#ff6348,#ff4757);color:#fff;border:0;padding:8px 12px;border-radius:10px;font-weight:800;font-size:12px;margin-left:4px;box-shadow:0 2px 0 #c0392b;';
-      btn.textContent = '⚡ 爆速モード';
-      btn.onclick = function() {
-        showQuickStartScreen();
-      };
-      var orgBtn = document.getElementById('organizer-btn');
-      if (orgBtn && orgBtn.parentNode) {
-        orgBtn.parentNode.insertBefore(btn, orgBtn.nextSibling);
+    tapCount++;
+    if (tapCount === 3) {
+      var qsScreen = document.getElementById('screen-quick-start');
+      var mainScreen = document.getElementById('screen-main');
+      var secretBtns = document.getElementById('secret-header-btns');
+
+      if (qsScreen && mainScreen) {
+        if (qsScreen.classList.contains('hidden')) {
+          // 爆速モードに戻す（主役を表示、裏画面とボタンを隠す）
+          qsScreen.classList.remove('hidden');
+          mainScreen.classList.add('hidden');
+          if (secretBtns) secretBtns.style.display = 'none';
+        } else {
+          // 通常のラウンド管理モードに切り替え（裏画面とボタンを表示）
+          qsScreen.classList.add('hidden');
+          mainScreen.classList.remove('hidden');
+          if (secretBtns) secretBtns.style.display = 'flex';
+        }
       }
-    }
-    // 既存のorganizer-btnがblockになったタイミングで爆速ボタンも表示
-    var orgBtn = document.getElementById('organizer-btn');
-    var qmBtn = document.getElementById('quick-mode-btn-hidden');
-    if (orgBtn && orgBtn.style.display === 'block' && qmBtn) {
-      qmBtn.style.display = 'inline-block';
+      tapCount = 0; // カウントをリセット
     }
   }
 });
