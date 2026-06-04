@@ -891,12 +891,15 @@ function handleInviteParams(p) {
 function showRegisterScreen() {
   document.getElementById('screen-register').classList.remove('hidden');
   document.getElementById('screen-main').classList.add('hidden');
-  document.getElementById('screen-private-room').classList.add('hidden');
+  if(document.getElementById('screen-private-room')) document.getElementById('screen-private-room').classList.add('hidden');
+  if(document.getElementById('screen-quick-start')) document.getElementById('screen-quick-start').classList.add('hidden');
 }
+
 function showPrivateRoomScreen() {
   document.getElementById('screen-register').classList.add('hidden');
   document.getElementById('screen-main').classList.add('hidden');
-  document.getElementById('screen-private-room').classList.remove('hidden');
+  if(document.getElementById('screen-private-room')) document.getElementById('screen-private-room').classList.remove('hidden');
+  if(document.getElementById('screen-quick-start')) document.getElementById('screen-quick-start').classList.add('hidden');
 }
 
 async function resolveAndLockCompetition(compId) {
@@ -1004,6 +1007,7 @@ function register() {
 function enterMain() {
   document.getElementById('screen-register').classList.add('hidden');
   document.getElementById('screen-private-room').classList.add('hidden');
+  if (document.getElementById('screen-quick-start')) document.getElementById('screen-quick-start').classList.add('hidden');
   document.getElementById('screen-main').classList.remove('hidden');
   document.getElementById('fab-jump').classList.remove('hidden');
   document.getElementById('me-name').textContent = APP.me.nickname + '(' + APP.me.groupName + ')';
