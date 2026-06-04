@@ -185,7 +185,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .boot-text{font-size:16px;font-weight:700;color:var(--gold-bri);}
 .boot-sub{font-size:12px;color:var(--text-sub);margin-top:8px;}
 .boot-cancel{margin-top:24px;padding:10px 20px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;font-size:13px;cursor:pointer;display:none;}
-/* === Score Setting Accordion === */
 .score-settings-acc{margin-bottom:10px;background:rgba(0,0,0,0.25);border:1px solid rgba(245,200,66,0.25);border-radius:12px;overflow:hidden;}
 .score-settings-acc-header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;cursor:pointer;background:rgba(0,0,0,0.3);user-select:none;min-height:48px;}
 .score-settings-acc-header:active{background:rgba(0,0,0,0.45);}
@@ -196,6 +195,28 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .score-settings-acc.open .score-settings-acc-body{max-height:400px;padding:10px;}
 .score-settings-acc-body .mode-switcher,.score-settings-acc-body .display-mode-switcher{margin-bottom:8px;}
 .score-settings-acc-body .display-mode-switcher:last-child{margin-bottom:0;}
+
+/* ===== Phase1 NEW: 隠しメニュー / 爆速モード / ラウンド管理 ===== */
+#secret-header-btns{display:none;gap:6px;flex-wrap:wrap;}
+#secret-header-btns.show{display:flex;}
+#secret-header-btns button{padding:8px 12px;border-radius:8px;font-size:12px;font-weight:800;border:0;min-height:38px;cursor:pointer;}
+.quick-start-card{background:linear-gradient(160deg,rgba(245,200,66,0.18),rgba(0,0,0,0.5));border:2px solid var(--gold);border-radius:18px;padding:20px;margin-bottom:14px;}
+.quick-start-card h2{margin:0 0 10px;color:var(--gold);font-size:22px;}
+.quick-start-card p.lead{font-size:13px;color:var(--text-sub);margin:0 0 14px;line-height:1.6;}
+.quick-qr-display{text-align:center;background:rgba(0,0,0,0.4);border-radius:14px;padding:16px;margin-top:14px;}
+.quick-qr-display .qbox{background:#fff;padding:10px;border-radius:10px;display:inline-block;}
+.quick-qr-display .qbox img{display:block;width:200px;height:200px;}
+.quick-qr-display .room-id{font-size:20px;font-weight:900;color:var(--gold);margin:10px 0 4px;}
+.dnd-zone{background:rgba(0,0,0,0.3);border:2px dashed rgba(245,200,66,0.4);border-radius:12px;padding:10px;min-height:80px;margin-bottom:10px;}
+.dnd-zone.over{background:rgba(245,200,66,0.18);border-color:var(--gold);}
+.dnd-zone h4{margin:0 0 8px;color:var(--gold-bri);font-size:13px;}
+.dnd-item{background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.25);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;cursor:grab;display:flex;justify-content:space-between;align-items:center;}
+.dnd-item:active{cursor:grabbing;}
+.dnd-item.leader{border-color:var(--gold);background:rgba(245,200,66,0.2);}
+.dnd-empty{color:var(--text-sub);font-size:11px;text-align:center;padding:14px;}
+.confirm-modal{background:linear-gradient(180deg,#1e4a3a,#143729);border-radius:18px;padding:22px;max-width:420px;width:100%;margin:auto;border:2px solid rgba(245,200,66,0.4);}
+.confirm-modal h3{margin:0 0 12px;color:var(--gold);}
+.lock-warn{background:rgba(231,76,60,0.25);border:1px solid var(--danger);border-radius:10px;padding:10px;margin-bottom:10px;color:#ffdada;font-size:13px;font-weight:700;}
 </style>
 </head>
 <body>
@@ -210,10 +231,14 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 <div style="color:white;padding:10px;text-align:center;font-weight:bold;">
 <span style="color:#f5c842;font-weight:bold;">コース:</span> <span id="course-name" style="font-weight:bold;"></span> <span style="color:rgba(255,255,255,0.4);margin:0 6px;">|</span> <span style="color:#f5c842;font-weight:bold;">組:</span> <span id="group-name" style="font-weight:bold;"></span>
 </div>
-<header style="display:flex; align-items:center; justify-content:space-between; position:relative;">
+<header style="display:flex; align-items:center; justify-content:space-between; position:relative; flex-wrap:wrap; gap:6px;">
   <h1 id="logo" style="margin:0;">G-LAND <span id="fin-badge" class="badge-fin hidden">確定</span><span id="mode-badge"></span></h1>
-  <button onclick="toggleInviteQR()" id="invite-toggle-btn" style="position:absolute; left:50%; transform:translateX(-50%); font-size:11px; padding:6px 12px; border-radius:12px; background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.5);">同伴招待QR</button>
-  <button id="organizer-btn" class="menu-btn" onclick="openAdmin()" style="display:none; margin:0;">主催者</button>
+  <button onclick="toggleInviteQR()" id="invite-toggle-btn" style="font-size:11px; padding:6px 12px; border-radius:12px; background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.5);">同伴招待QR</button>
+  <div id="secret-header-btns">
+    <button id="organizer-btn" class="menu-btn" onclick="openAdmin()" style="margin:0;">主催者</button>
+    <button class="menu-btn" onclick="openRoundManager()" style="background:linear-gradient(180deg,#7be3a8,#27ae60);color:#fff;">🎯 ラウンド管理</button>
+    <button class="menu-btn" onclick="openQuickStart()" style="background:linear-gradient(180deg,#ffe082,#ff8c00);color:#000;">⚡️ 爆速モード</button>
+  </div>
 </header>
 
 <div class="container">
@@ -311,7 +336,10 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 
 <div class="round-finish-bar">
 <div class="msg">ラウンド終了後、ラウンドを履歴に保存します</div>
-<button onclick="finishRound()">ラウンドを履歴に保存</button>
+<div style="display:flex;gap:8px;">
+  <button onclick="finishRound()" style="flex:2;">終了して確定</button>
+  <button onclick="manualBackup()" style="flex:1;background:linear-gradient(180deg,#7be3a8,#27ae60);color:#fff;">手動バックアップ</button>
+</div>
 </div>
 
 <div style="text-align:right;margin-bottom:10px;">
@@ -340,6 +368,35 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 </div>
 </div>
 
+<!-- Phase1 NEW: 爆速スタート画面 -->
+<div id="screen-quick-start" class="hidden">
+  <div class="quick-start-card">
+    <h2>⚡️ 爆速スタートモード</h2>
+    <p class="lead">1組のみのプライベートラウンド向け。<br>主催者がスコアカード作成 → QR発行 → 読み取るだけで入力画面へ直行。</p>
+
+    <label>ゴルフ場</label>
+    <select id="qs-course"><option value="">読み込み中...</option></select>
+
+    <label>あなたのニックネーム</label>
+    <input type="text" id="qs-nick" placeholder="例:タロウ" autocomplete="off">
+
+    <label>本名（スコアカード用）</label>
+    <input type="text" id="qs-real" placeholder="例:山田 太郎" autocomplete="off">
+
+    <button class="primary" onclick="quickStartCreate()" id="qs-create-btn">⚡️ 爆速スタート発行</button>
+
+    <div id="qs-result" class="quick-qr-display hidden">
+      <div class="qbox"><img id="qs-qr-img" src="" alt="QuickStart QR"></div>
+      <div class="room-id" id="qs-room-id">ROOM-----</div>
+      <div style="font-size:13px;color:var(--text-sub);">読み取った瞬間にスコア入力画面へ直行します</div>
+      <small id="qs-url" style="display:block;color:var(--text-sub);font-size:11px;margin-top:6px;word-break:break-all;">-</small>
+      <button class="primary" onclick="quickStartEnterMyself()" style="margin-top:14px;">自分もスコア入力へ進む</button>
+    </div>
+
+    <button class="ghost" style="width:100%;margin-top:10px;" onclick="closeQuickStart()">閉じる</button>
+  </div>
+</div>
+
 </div>
 
 <button id="fab-jump" class="fab-jump hidden" onclick="openHolePicker()">H</button>
@@ -359,6 +416,59 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 <div class="hz-list" id="hzList"></div>
 <button class="ghost" style="width:100%;margin-top:20px;" onclick="closeHoleZoom()">閉じる</button>
 </div>
+</div>
+
+<!-- Phase1 NEW: ラウンド管理モーダル -->
+<div class="modal-bg" id="modal-round-manager">
+  <div class="modal">
+    <h3>🎯 ラウンド管理</h3>
+    <div class="section-title">1. ラウンド作成</div>
+    <label>ラウンド名</label>
+    <input type="text" id="rm-name" placeholder="例: 2026新春コンペ">
+    <label>ゴルフ場</label>
+    <select id="rm-course"><option value="">読み込み中...</option></select>
+    <label>タイプ</label>
+    <select id="rm-type">
+      <option value="COMP">コンペ</option>
+      <option value="PRIVATE">プライベート（1組のみ）</option>
+    </select>
+    <button class="primary" onclick="createRound()">ラウンドを新規作成</button>
+
+    <div id="rm-current-round" class="hidden">
+      <div class="section-title">2. 組分け（友達リスト → 各組へドラッグ＆ドロップ）</div>
+      <div style="background:rgba(0,0,0,0.3);padding:10px;border-radius:10px;">
+        <label>新しい参加者を追加</label>
+        <div style="display:flex;gap:6px;">
+          <input type="text" id="rm-friend-nick" placeholder="ニックネーム" style="margin:0;">
+          <button class="ghost" onclick="addFriendToPool()" style="min-width:80px;">追加</button>
+        </div>
+      </div>
+      <div class="dnd-zone" id="dnd-pool" ondragover="dndOver(event)" ondragleave="dndLeave(event)" ondrop="dndDrop(event,'POOL')">
+        <h4>👥 友達リスト（未割振）</h4>
+        <div id="dnd-pool-items"></div>
+      </div>
+      <div id="dnd-groups"></div>
+      <button class="ghost" style="width:100%;margin-bottom:10px;" onclick="addNewGroup()">＋ 新しい組を追加</button>
+
+      <div class="section-title">3. 招待QR発行</div>
+      <div id="rm-qr-area" style="text-align:center;background:rgba(0,0,0,0.3);border-radius:10px;padding:12px;"></div>
+      <button class="primary" onclick="issueRoundInviteQR()" style="margin-top:8px;">招待QR発行</button>
+    </div>
+
+    <button class="ghost" style="width:100%;margin-top:16px;" onclick="closeRoundManager()">閉じる</button>
+  </div>
+</div>
+
+<!-- Phase1 NEW: 確定確認モーダル -->
+<div class="modal-bg" id="modal-confirm-finish">
+  <div class="confirm-modal">
+    <h3>ラウンド確定</h3>
+    <p id="confirm-finish-msg" style="color:#fff;line-height:1.6;">本当に保存して確定しますか？</p>
+    <div style="display:flex;gap:8px;margin-top:14px;">
+      <button class="primary" style="flex:1;" onclick="confirmFinishRound()">確定する</button>
+      <button class="ghost" style="flex:1;" onclick="closeFinishConfirm()">キャンセル</button>
+    </div>
+  </div>
 </div>
 
 <div class="modal-bg" id="modal-pwa">
@@ -477,14 +587,17 @@ const APP = {
   shotsLog: {},
   historyData: { list: [], stats: {} },
   historyExpanded: {},
-  bootReady: false
+  bootReady: false,
+  // Phase1 NEW
+  currentRoundId: '',
+  roundAssigns: [],
+  friendPool: [],
+  groupBuckets: { '1組': [], '2組': [] },
+  deviceId: ''
 };
 
 const GAS_URL = "https://script.google.com/macros/s/AKfycbyJbjVYmqATkJe2Ial5XOK_CYXCfkPWEIpKOtZziwDQ490l-AfNNF43gwls20y1N2FHgg/exec";
 
-/* ===========================================================
- * GitHub引っ越し用：外部GASと通信する関数（fetch版）
- * =========================================================== */
 function gasCall(fnName) {
   var args = Array.prototype.slice.call(arguments, 1);
   return new Promise(function(resolve, reject) {
@@ -545,11 +658,14 @@ function parseUrlParams() {
   return params;
 }
 
-/* ===========================================================
- * 起動シーケンス
- * =========================================================== */
 window.addEventListener('load', function() {
   console.log('[BOOT] window.load - start');
+  // デバイスID生成
+  if (!localStorage.getItem('gland_device_id')) {
+    localStorage.setItem('gland_device_id', 'D-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,7));
+  }
+  APP.deviceId = localStorage.getItem('gland_device_id');
+
   bootApp().catch(function(err) {
     console.error('[BOOT] fatal:', err);
     showStartupErrorBanner('Coursesシートが見つかりません。設定を確認してください', String(err && err.message || err));
@@ -567,7 +683,6 @@ window.addEventListener('load', function() {
     APP.pwaDeferredPrompt = e;
   });
 
-  // 5秒後にスキップボタンを表示
   setTimeout(function() {
     var b = document.getElementById('boot-cancel-btn');
     if (b && !APP.bootReady) b.style.display = 'inline-block';
@@ -576,28 +691,22 @@ window.addEventListener('load', function() {
 
 async function bootApp() {
   var BOOT_START = Date.now();
-  console.log('[BOOT] bootApp start');
   setBootSubText('サーバーへ接続中...');
 
   var overallTimer = setTimeout(function() {
     if (APP.bootReady) return;
-    console.error('[BOOT] overall timeout 25s');
     showStartupErrorBanner(
       'サーバー応答が遅すぎます',
-      '25秒以内に初期化が完了しませんでした。F5で再読み込み、または F12 でログを確認してください。'
+      '25秒以内に初期化が完了しませんでした。'
     );
     hideBootOverlay();
   }, 25000);
 
-  // STEP1: getCourses
-  console.log('[BOOT] STEP1 getCourses');
-  setBootSubText('コース一覧を取得中... (最大15秒)');
+  setBootSubText('コース一覧を取得中...');
   var courseRes;
   try {
     courseRes = await gasCall('getCourses');
-    console.log('[BOOT] STEP1 done:', courseRes);
   } catch (err) {
-    console.error('[BOOT] STEP1 failed:', err);
     clearTimeout(overallTimer);
     showStartupErrorBanner('コース取得に失敗しました', 'エラー: ' + (err && err.message || err));
     hideBootOverlay();
@@ -607,29 +716,20 @@ async function bootApp() {
   if (!courseRes || !courseRes.ok) {
     var errMsg = (courseRes && courseRes.error) || 'Coursesシートが見つかりません。設定を確認してください';
     var errType = (courseRes && courseRes.errorType) || 'UNKNOWN';
-    console.error('[BOOT] getCourses error: ' + errType + ' / ' + errMsg);
     showStartupErrorBanner(errMsg, errType);
     APP.courses = [];
   } else {
     APP.courses = courseRes.courses || [];
-    console.log('[BOOT] courses loaded: ' + APP.courses.length);
   }
 
-  // STEP2: プルダウン描画
   setBootSubText('コースリストを描画中...');
-  console.log('[BOOT] STEP2 populate dropdowns');
   populateCourseDropdowns();
-  console.log('[BOOT] STEP2 done');
 
-  // STEP3: getInitData (失敗してもデフォルトで続行)
-  setBootSubText('設定情報を取得中... (最大10秒)');
-  console.log('[BOOT] STEP3 getInitData');
+  setBootSubText('設定情報を取得中...');
   var initData;
   try {
     initData = await gasCall('getInitData', { __timeout: 10000 });
-    console.log('[BOOT] STEP3 done');
   } catch (err) {
-    console.warn('[BOOT] STEP3 failed, default fallback:', err);
     initData = { courses: APP.courses, activeCourseId: '', periaHoles: [], prizes: [], isFinalized: false };
   }
 
@@ -649,16 +749,12 @@ async function bootApp() {
   document.getElementById('fin-badge').classList.toggle('hidden', !APP.isFinalized);
 
   if (APP.courses.length === 0) {
-    console.warn('[BOOT] courses empty');
     showStartupErrorBanner('Coursesシートが見つかりません。設定を確認してください', 'コースデータが0件です');
   }
 
-  // STEP4: ルーティング
   setBootSubText('画面を準備中...');
-  console.log('[BOOT] STEP4 routing');
   try {
     await routeAfterBoot();
-    console.log('[BOOT] STEP4 done');
   } catch (err) {
     console.error('[BOOT] STEP4 failed:', err);
   }
@@ -672,11 +768,10 @@ async function bootApp() {
 }
 
 function forceStopBoot() {
-  console.warn('[BOOT] user forced skip');
   APP.bootReady = true;
   hideBootOverlay();
   if (!APP.courses || APP.courses.length === 0) {
-    showStartupErrorBanner('オフラインモードで起動しました', 'サーバーからのデータ取得に失敗したため、機能が制限されます');
+    showStartupErrorBanner('オフラインモードで起動しました', 'サーバーからのデータ取得に失敗しました');
   }
   showRegisterScreen();
 }
@@ -686,6 +781,8 @@ function populateCourseDropdowns() {
   var admSel  = document.getElementById('adm-course');
   var privSel = document.getElementById('priv-course');
   var histSel = document.getElementById('hist-course-filter');
+  var qsSel   = document.getElementById('qs-course');
+  var rmSel   = document.getElementById('rm-course');
 
   function buildOptions(selectedId) {
     if (!APP.courses || APP.courses.length === 0) {
@@ -700,21 +797,51 @@ function populateCourseDropdowns() {
   if (regSel)  regSel.innerHTML  = buildOptions(APP.activeCourseId);
   if (admSel)  admSel.innerHTML  = buildOptions(APP.activeCourseId);
   if (privSel) privSel.innerHTML = buildOptions(APP.activeCourseId);
+  if (qsSel)   qsSel.innerHTML   = buildOptions(APP.activeCourseId);
+  if (rmSel)   rmSel.innerHTML   = buildOptions(APP.activeCourseId);
   if (histSel) {
     var optsAll = (APP.courses && APP.courses.length)
       ? APP.courses.map(function(c){ return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(c.name) + '</option>'; }).join('')
       : '';
     histSel.innerHTML = '<option value="">すべてのコース</option>' + optsAll;
   }
-
-  console.log('[populateCourseDropdowns] reflected ' + (APP.courses ? APP.courses.length : 0) + ' options');
 }
 
 async function routeAfterBoot() {
   var p = parseUrlParams();
   var saved = localStorage.getItem('gland_me');
-  setBootSubText("記憶チェック: " + saved);
-  var hasInvite = !!(p.comp_id || p.group_id || p.room_id || p.pro_id || p.course_id || p.new_room);
+  var hasInvite = !!(p.comp_id || p.group_id || p.room_id || p.pro_id || p.course_id || p.new_room || p.mode || p.checkin);
+
+  // Phase1 NEW: ?mode=quick
+  if (p.mode === 'quick') {
+    openQuickStart();
+    return;
+  }
+
+  // Phase1 NEW: ?checkin=1&room_id=XXX&course_id=YYY
+  if (p.checkin === '1' && p.room_id && p.course_id) {
+    // ローカル保存情報があれば即遷移、なければ簡易登録画面へ
+    var memo = localStorage.getItem('gland_checkin_profile');
+    if (memo) {
+      try {
+        var prof = JSON.parse(memo);
+        if (prof && prof.nickname && prof.realName) {
+          autoCheckInRegister(p.room_id, p.course_id, prof);
+          return;
+        }
+      } catch(e) {}
+    }
+    showRegisterScreen();
+    document.getElementById('reg-title').innerHTML = 'QRチェックイン <span class="mode-badge priv">CHECKIN</span>';
+    document.getElementById('reg-locked-info').innerHTML =
+      '<div class="locked-info">受付完了！氏名・ニックネーム・所属を入力してください<br>ルーム: <b>' + escapeHtml(p.room_id) + '</b></div>';
+    var sel = document.getElementById('reg-course');
+    sel.value = p.course_id;
+    sel.disabled = true;
+    document.getElementById('reg-group').value = p.room_id;
+    APP.roomId = p.room_id;
+    return;
+  }
 
   if (saved && !hasInvite) {
     try {
@@ -743,6 +870,37 @@ async function routeAfterBoot() {
   }
 }
 
+function autoCheckInRegister(roomId, courseId, prof) {
+  toast('受付完了！スコア入力画面を準備中...');
+  callGAS('registerPlayer', [{
+    courseId: courseId,
+    nickname: prof.nickname,
+    realName: prof.realName,
+    groupName: roomId,
+    userId: prof.userId || ''
+  }], function(res) {
+    if (!res || !res.ok) {
+      toast(res && res.msg ? res.msg : '登録失敗');
+      showRegisterScreen();
+      return;
+    }
+    APP.me = {
+      playerId: res.playerId,
+      userId: res.userId || prof.userId || '',
+      nickname: prof.nickname,
+      realName: prof.realName,
+      groupName: roomId,
+      courseId: courseId,
+      compId: '',
+      proId: '',
+      roomId: roomId
+    };
+    localStorage.setItem('gland_me', JSON.stringify(APP.me));
+    localStorage.setItem('gland_player_id', res.playerId);
+    enterMain();
+  });
+}
+
 function setBootSubText(txt) {
   var el = document.getElementById('boot-sub');
   if (el) el.textContent = txt;
@@ -753,7 +911,6 @@ function hideBootOverlay() {
 }
 
 function showStartupErrorBanner(message, detail) {
-  console.error('[G-LAND ERROR]', message, detail || '');
   var banner = document.getElementById('startup-error-banner');
   if (!banner) {
     banner = document.createElement('div');
@@ -790,17 +947,265 @@ function handleInviteParams(p) {
   }
 }
 
-function showRegisterScreen() {
-  document.getElementById('screen-register').classList.remove('hidden');
-  document.getElementById('screen-main').classList.add('hidden');
-  document.getElementById('screen-private-room').classList.add('hidden');
-}
-function showPrivateRoomScreen() {
-  document.getElementById('screen-register').classList.add('hidden');
-  document.getElementById('screen-main').classList.add('hidden');
-  document.getElementById('screen-private-room').classList.remove('hidden');
+/* === 重要: 画面の重なり防止 ヘルパー === */
+function hideAllScreensExcept(keepId) {
+  var all = ['screen-register','screen-main','screen-private-room','screen-quick-start'];
+  all.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (id === keepId) el.classList.remove('hidden');
+    else el.classList.add('hidden');
+  });
 }
 
+function showRegisterScreen() { hideAllScreensExcept('screen-register'); }
+function showPrivateRoomScreen() { hideAllScreensExcept('screen-private-room'); }
+
+/* Phase1 NEW: 爆速モード */
+function openQuickStart() {
+  hideAllScreensExcept('screen-quick-start');
+  document.getElementById('qs-result').classList.add('hidden');
+  // ローカル復元
+  var memo = localStorage.getItem('gland_checkin_profile');
+  if (memo) {
+    try {
+      var prof = JSON.parse(memo);
+      if (prof && prof.nickname) document.getElementById('qs-nick').value = prof.nickname;
+      if (prof && prof.realName) document.getElementById('qs-real').value = prof.realName;
+    } catch(e) {}
+  }
+}
+function closeQuickStart() {
+  if (APP.me && APP.me.courseId) {
+    hideAllScreensExcept('screen-main');
+  } else {
+    hideAllScreensExcept('screen-register');
+  }
+}
+
+function quickStartCreate() {
+  var courseId = document.getElementById('qs-course').value;
+  var nick = document.getElementById('qs-nick').value.trim();
+  var real = document.getElementById('qs-real').value.trim() || nick;
+  if (!courseId || !nick) { toast('ゴルフ場とニックネーム必須'); return; }
+  var btn = document.getElementById('qs-create-btn');
+  btn.disabled = true; btn.textContent = '発行中...';
+  callGAS('quickStartCreate', [{ courseId: courseId, nickname: nick, realName: real }], function(res) {
+    btn.disabled = false; btn.textContent = '⚡️ 爆速スタート発行';
+    if (!res || !res.ok) { toast(res && res.msg ? res.msg : '失敗'); return; }
+    // 主催者自身もこのままセットアップ
+    APP.me = {
+      playerId: res.playerId,
+      userId: res.userId,
+      nickname: nick,
+      realName: real,
+      groupName: res.groupName,
+      courseId: courseId,
+      compId: '', proId: '',
+      roomId: res.roomId
+    };
+    localStorage.setItem('gland_me', JSON.stringify(APP.me));
+    localStorage.setItem('gland_checkin_profile', JSON.stringify({ nickname: nick, realName: real, userId: res.userId }));
+    document.getElementById('qs-room-id').textContent = res.roomId;
+    document.getElementById('qs-url').textContent = res.checkinUrl;
+    document.getElementById('qs-qr-img').src = res.qrImageUrl;
+    document.getElementById('qs-result').classList.remove('hidden');
+    toast('爆速QR発行完了！');
+  }, function(err) {
+    btn.disabled = false; btn.textContent = '⚡️ 爆速スタート発行';
+    toast('通信エラー');
+  });
+}
+
+function quickStartEnterMyself() {
+  if (!APP.me) { toast('まずQRを発行してください'); return; }
+  enterMain();
+}
+
+/* Phase1 NEW: ラウンド管理 */
+function openRoundManager() {
+  document.getElementById('modal-round-manager').classList.add('show');
+  document.getElementById('rm-current-round').classList.add('hidden');
+  APP.currentRoundId = '';
+  APP.friendPool = [];
+  APP.groupBuckets = { '1組': [], '2組': [] };
+}
+function closeRoundManager() {
+  document.getElementById('modal-round-manager').classList.remove('show');
+}
+
+function createRound() {
+  var roundName = document.getElementById('rm-name').value.trim() || ('Round ' + new Date().toISOString().slice(0,10));
+  var courseId = document.getElementById('rm-course').value;
+  var roundType = document.getElementById('rm-type').value;
+  if (!courseId) { toast('コースを選択'); return; }
+
+  // プライベート(1組)なら組分けをスキップ
+  if (roundType === 'PRIVATE') {
+    closeRoundManager();
+    openQuickStart();
+    document.getElementById('qs-course').value = courseId;
+    toast('プライベートモード → 爆速スタートへ');
+    return;
+  }
+
+  callGAS('createRound', [{
+    courseId: courseId,
+    roundName: roundName,
+    roundType: roundType,
+    leaderUserId: APP.me ? APP.me.userId : ''
+  }], function(res) {
+    if (!res || !res.ok) { toast('ラウンド作成失敗'); return; }
+    APP.currentRoundId = res.roundId;
+    toast('ラウンド作成完了: ' + res.roundId);
+    document.getElementById('rm-current-round').classList.remove('hidden');
+    renderDndUI();
+  });
+}
+
+function addFriendToPool() {
+  var nick = document.getElementById('rm-friend-nick').value.trim();
+  if (!nick) return;
+  APP.friendPool.push({ userId: 'TMP-' + Date.now() + '-' + Math.random().toString(36).slice(2,6), nickname: nick, realName: nick });
+  document.getElementById('rm-friend-nick').value = '';
+  renderDndUI();
+}
+
+function renderDndUI() {
+  // プール
+  var poolEl = document.getElementById('dnd-pool-items');
+  if (APP.friendPool.length === 0) {
+    poolEl.innerHTML = '<div class="dnd-empty">参加者を追加してください</div>';
+  } else {
+    poolEl.innerHTML = APP.friendPool.map(function(p) {
+      return '<div class="dnd-item" draggable="true" ondragstart="dndStart(event,\'' + p.userId + '\')">' +
+        '<span>' + escapeHtml(p.nickname) + '</span>' +
+        '<button onclick="removeFromPool(\'' + p.userId + '\')" style="background:transparent;border:0;color:#ff8888;font-size:18px;">x</button>' +
+        '</div>';
+    }).join('');
+  }
+  // グループ
+  var groupsEl = document.getElementById('dnd-groups');
+  var html = '';
+  Object.keys(APP.groupBuckets).forEach(function(gname) {
+    var items = APP.groupBuckets[gname];
+    var inner = items.length === 0
+      ? '<div class="dnd-empty">ここにドロップ</div>'
+      : items.map(function(p) {
+          var leaderCls = p.role === 'leader' ? ' leader' : '';
+          var leaderMark = p.role === 'leader' ? ' 👑' : '';
+          return '<div class="dnd-item' + leaderCls + '" draggable="true" ondragstart="dndStart(event,\'' + p.userId + '\')">' +
+            '<span>' + escapeHtml(p.nickname) + leaderMark + '</span>' +
+            '<div>' +
+              '<button onclick="setLeader(\'' + gname + '\',\'' + p.userId + '\')" style="background:transparent;border:0;color:var(--gold);font-size:14px;font-weight:800;">L</button>' +
+              '<button onclick="removeFromGroup(\'' + gname + '\',\'' + p.userId + '\')" style="background:transparent;border:0;color:#ff8888;font-size:18px;">x</button>' +
+            '</div></div>';
+        }).join('');
+    html += '<div class="dnd-zone" ondragover="dndOver(event)" ondragleave="dndLeave(event)" ondrop="dndDrop(event,\'' + gname + '\')">' +
+      '<h4>📋 ' + escapeHtml(gname) + ' (' + items.length + '名)</h4>' + inner + '</div>';
+  });
+  groupsEl.innerHTML = html;
+}
+
+var _dndDragUserId = null;
+function dndStart(e, userId) { _dndDragUserId = userId; e.dataTransfer.effectAllowed = 'move'; }
+function dndOver(e) { e.preventDefault(); e.currentTarget.classList.add('over'); }
+function dndLeave(e) { e.currentTarget.classList.remove('over'); }
+function dndDrop(e, target) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('over');
+  if (!_dndDragUserId) return;
+  // 既存場所から削除
+  var moved = null;
+  for (var i = APP.friendPool.length - 1; i >= 0; i--) {
+    if (APP.friendPool[i].userId === _dndDragUserId) {
+      moved = APP.friendPool.splice(i, 1)[0]; break;
+    }
+  }
+  if (!moved) {
+    Object.keys(APP.groupBuckets).forEach(function(g) {
+      for (var j = APP.groupBuckets[g].length - 1; j >= 0; j--) {
+        if (APP.groupBuckets[g][j].userId === _dndDragUserId) {
+          moved = APP.groupBuckets[g].splice(j, 1)[0];
+        }
+      }
+    });
+  }
+  if (!moved) { _dndDragUserId = null; return; }
+
+  if (target === 'POOL') {
+    moved.role = 'player';
+    APP.friendPool.push(moved);
+  } else {
+    if (!APP.groupBuckets[target]) APP.groupBuckets[target] = [];
+    APP.groupBuckets[target].push(moved);
+    // サーバーへ反映
+    callGAS('assignToGroup', [{
+      roundId: APP.currentRoundId,
+      groupName: target,
+      userId: moved.userId,
+      nickname: moved.nickname,
+      realName: moved.realName,
+      role: moved.role || 'player'
+    }], function() {});
+  }
+  _dndDragUserId = null;
+  renderDndUI();
+}
+function removeFromPool(uid) {
+  for (var i = APP.friendPool.length - 1; i >= 0; i--) {
+    if (APP.friendPool[i].userId === uid) APP.friendPool.splice(i, 1);
+  }
+  renderDndUI();
+}
+function removeFromGroup(gname, uid) {
+  var bucket = APP.groupBuckets[gname];
+  if (!bucket) return;
+  for (var i = bucket.length - 1; i >= 0; i--) {
+    if (bucket[i].userId === uid) {
+      var m = bucket.splice(i, 1)[0];
+      m.role = 'player';
+      APP.friendPool.push(m);
+    }
+  }
+  renderDndUI();
+}
+function setLeader(gname, uid) {
+  var bucket = APP.groupBuckets[gname];
+  if (!bucket) return;
+  bucket.forEach(function(p) { p.role = (p.userId === uid) ? 'leader' : 'player'; });
+  var target = bucket.find(function(p){ return p.userId === uid; });
+  if (target) {
+    callGAS('assignToGroup', [{
+      roundId: APP.currentRoundId,
+      groupName: gname,
+      userId: target.userId,
+      nickname: target.nickname,
+      realName: target.realName,
+      role: 'leader'
+    }], function(){});
+  }
+  renderDndUI();
+}
+function addNewGroup() {
+  var n = Object.keys(APP.groupBuckets).length + 1;
+  var name = n + '組';
+  while (APP.groupBuckets[name]) { n++; name = n + '組'; }
+  APP.groupBuckets[name] = [];
+  renderDndUI();
+}
+
+function issueRoundInviteQR() {
+  if (!APP.currentRoundId) { toast('先にラウンドを作成'); return; }
+  var courseId = document.getElementById('rm-course').value;
+  var url = buildInviteUrl({ checkin: '1', room_id: APP.currentRoundId, course_id: courseId });
+  var qr = buildQRImageUrl(url);
+  document.getElementById('rm-qr-area').innerHTML =
+    '<div style="background:#fff;padding:10px;border-radius:10px;display:inline-block;"><img src="' + qr + '" style="width:200px;height:200px;"></div>' +
+    '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + escapeHtml(url) + '</div>';
+}
+
+/* === 既存のプライベートルーム === */
 async function resolveAndLockCompetition(compId) {
   toast('コンペ情報取得中...');
   try {
@@ -896,6 +1301,10 @@ function register() {
     };
     localStorage.setItem('gland_me', JSON.stringify(APP.me));
     localStorage.setItem('gland_player_id', res.playerId);
+    // チェックイン用のローカル保存（2回目以降のスキップに使う）
+    localStorage.setItem('gland_checkin_profile', JSON.stringify({
+      nickname: nickname, realName: realName, userId: res.userId
+    }));
     toast('登録完了');
     enterMain();
   }, function(err) {
@@ -904,9 +1313,7 @@ function register() {
 }
 
 function enterMain() {
-  document.getElementById('screen-register').classList.add('hidden');
-  document.getElementById('screen-private-room').classList.add('hidden');
-  document.getElementById('screen-main').classList.remove('hidden');
+  hideAllScreensExcept('screen-main');
   document.getElementById('fab-jump').classList.remove('hidden');
   document.getElementById('me-name').textContent = APP.me.nickname + '(' + APP.me.groupName + ')';
   updateHeaderDisplay();
@@ -930,9 +1337,9 @@ function enterMain() {
 
 function prepareInviteQR() {
   var url = buildInviteUrl({
-    room_id: APP.me.roomId || '',
-    course_id: APP.me.courseId || '',
-    group: APP.me.groupName || ''
+    checkin: '1',
+    room_id: APP.me.roomId || APP.me.groupName || '',
+    course_id: APP.me.courseId || ''
   });
   document.getElementById('invite-qr-url').textContent = url;
   document.getElementById('invite-qr-img').src = buildQRImageUrl(url);
@@ -945,7 +1352,7 @@ function toggleInviteQR() {
   if (!card.classList.contains('hidden')) prepareInviteQR();
 }
 function buildInviteUrl(paramsObj) {
-  var base = 'https://script.google.com/macros/s/AKfycbyJbjVYmqATkJe2Ial5XOK_CYXCfkPWEIpKOtZziwDQ490l-AfNNF43gwls20y1N2FHgg/exec';
+  var base = GAS_URL;
   var carry = {};
   if (APP.compId) carry.comp_id = APP.compId;
   if (APP.proId) carry.pro_id = APP.proId;
@@ -961,7 +1368,6 @@ function buildQRImageUrl(url) {
   return 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(url);
 }
 
-/* 表示モード切替 */
 function setDisplayMode(mode) {
   if (['stroke','pardiff','symbol'].indexOf(mode) < 0) mode = 'stroke';
   APP.displayMode = mode;
@@ -978,13 +1384,12 @@ function updateDisplayModeButtons() {
   });
 }
 
-/* 記号定義（CSS外参照を避けるため定数化） */
-var SYM_ALBATROSS = '\u2606'; // 白星
-var SYM_EAGLE     = '\u25CE'; // 二重丸
-var SYM_BIRDIE    = '\u25CB'; // 丸
-var SYM_PAR       = '\u2014'; // 横棒
-var SYM_BOGEY     = '\u25B3'; // 三角
-var SYM_DBOGEY    = '\u25A1'; // 四角
+var SYM_ALBATROSS = '\u2606';
+var SYM_EAGLE     = '\u25CE';
+var SYM_BIRDIE    = '\u25CB';
+var SYM_PAR       = '\u2014';
+var SYM_BOGEY     = '\u25B3';
+var SYM_DBOGEY    = '\u25A1';
 
 function formatScoreByMode(stroke, par) {
   if (!stroke || stroke <= 0) return '-';
@@ -1065,8 +1470,8 @@ function renderHoles() {
         '</div>' +
         inputUI +
       '</div>' +
-      '<div class="mate-table-wrap">' +
-        '<h4 style="margin:0 0 8px;color:var(--gold-bri);">同伴メンバー スコア表</h4>' +
+      '<div class="mate-table-wrap" onclick="openHoleZoomFromTable()">' +
+        '<h4 style="margin:0 0 8px;color:var(--gold-bri);">同伴メンバー スコア表 <small style="color:var(--text-sub);font-weight:400;">(タップで拡大)</small></h4>' +
         '<div id="mate-table-body"><div style="color:var(--text-sub);font-size:12px;padding:6px;">読み込み中...</div></div>' +
       '</div>' +
     '</div>';
@@ -1075,6 +1480,10 @@ function renderHoles() {
   loadGroupMatesTable();
   buildHolePicker();
   refreshAllScoreDisplays();
+}
+
+function openHoleZoomFromTable() {
+  openHoleZoom(APP.currentHole + 1);
 }
 
 function renderParDiffUI(i, par, s) {
@@ -1314,7 +1723,7 @@ function renderGroupMatesTable(data) {
   var head = '<tr><th>プレイヤー</th>';
   for (var k = 0; k < 18; k++) {
     var hi = (k === cur) ? ' style="background:rgba(245,200,66,0.7);color:#000;"' : '';
-    head += '<th class="hole-h" onclick="openHoleZoom(' + (k+1) + ')"' + hi + '>' + (k+1) + '</th>';
+    head += '<th class="hole-h" onclick="event.stopPropagation();openHoleZoom(' + (k+1) + ')"' + hi + '>' + (k+1) + '</th>';
   }
   head += '<th style="color:var(--gold-bri);">計</th></tr>';
 
@@ -1531,6 +1940,7 @@ function renderLeaderboard() {
     } else {
       var main = APP.lbMode === 'net' ? p.net : p.gross;
       var sub = APP.lbMode === 'net' ? 'HDCP ' + p.hdcp : fmtVsPar(p.vsPar);
+      // リーダーボードはニックネーム表示
       return '<div class="lb-row ' + rankCls + '" onclick="toggleDetail(\'p' + idx + '\')">' +
         '<div class="rank">' + (idx + 1) + '</div>' +
         '<div class="name"><div class="n1">' + escapeHtml(p.nickname) + '</div>' +
@@ -1572,7 +1982,10 @@ function renderPlayerDetail(p) {
   }
 
   var netText = p.periaReady ? p.net : '集計待ち';
-  return buildHalf(0, 9, 'OUT') +
+  // スコアカード詳細では本名も併記
+  var realLine = p.realName ? '<div style="font-size:12px;color:var(--text-sub);margin-bottom:4px;">本名: ' + escapeHtml(p.realName) + '</div>' : '';
+  return realLine +
+    buildHalf(0, 9, 'OUT') +
     '<div style="height:6px;"></div>' +
     buildHalf(9, 18, 'IN') +
     '<div style="margin-top:8px;font-size:13px;">グロス: <b>' + p.gross + '</b> / ネット: <b>' + netText + '</b></div>';
@@ -1655,7 +2068,7 @@ function renderHistoryStats(stats) {
 function renderHistoryList(list) {
   var wrap = document.getElementById('hist-list');
   if (!list || !list.length) {
-    wrap.innerHTML = '<div class="history-list-empty">履歴データがまだありません<br><br>上の「ラウンドを履歴に保存」で記録できます</div>';
+    wrap.innerHTML = '<div class="history-list-empty">履歴データがまだありません<br><br>上の「終了して確定」で記録できます</div>';
     return;
   }
   var best = null;
@@ -1738,7 +2151,9 @@ function buildHistoryDetailHtml(detail) {
   detail.mates.forEach(function(m) {
     var cls = m.isPrimary ? ' class="primary"' : '';
     var star = m.isPrimary ? '* ' : '';
-    var row = '<tr' + cls + '><td>' + star + escapeHtml(m.nickname || '(名前なし)') + '</td>';
+    // スコアカード上は本名表示
+    var displayName = m.realName ? m.realName : m.nickname;
+    var row = '<tr' + cls + '><td>' + star + escapeHtml(displayName || '(名前なし)') + '</td>';
     var sum = 0;
     for (var hh = 0; hh < 18; hh++) {
       var sc = (m.holeScores && m.holeScores[hh]) ? m.holeScores[hh] : { stroke: 0 };
@@ -1756,19 +2171,27 @@ function buildHistoryDetailHtml(detail) {
     '<div class="hist-detail-table-wrap"><table>' + headRow + parRow + memberRows + '</table></div>';
 }
 
+/* === 確定処理：ポップアップで同意を取る === */
 function finishRound() {
   if (!APP.me || !APP.me.playerId) { toast('プレイヤー情報なし'); return; }
   var playedHoles = APP.myScores.filter(function(s) { return s.stroke > 0; }).length;
   if (playedHoles === 0) { toast('スコアが1ホールも入力されていません'); return; }
-  var confirmMsg;
+  var msg;
   if (playedHoles === 18) {
-    confirmMsg = '18ホール完了！\n履歴に保存しますか？';
+    msg = '18ホール完了！\n履歴に保存して確定しますか？';
   } else if (playedHoles === 9) {
-    confirmMsg = 'ハーフ（9ホール）まで入力済みです。\n履歴に保存しますか？';
+    msg = 'ハーフ（9ホール）まで入力済みです。\n履歴に保存して確定しますか？';
   } else {
-    confirmMsg = '現在 ' + playedHoles + '/18 ホール入力済みです。\nこの時点までを履歴に保存しますか？';
+    msg = '現在 ' + playedHoles + '/18 ホール入力済みです。\nこの時点までを履歴に保存して確定しますか？';
   }
-  if (!confirm(confirmMsg)) return;
+  document.getElementById('confirm-finish-msg').textContent = msg;
+  document.getElementById('modal-confirm-finish').classList.add('show');
+}
+function closeFinishConfirm() {
+  document.getElementById('modal-confirm-finish').classList.remove('show');
+}
+function confirmFinishRound() {
+  closeFinishConfirm();
   toast('保存中...');
   callGAS('saveRoundSnapshot', [APP.me.playerId], function(res) {
     if (!res || !res.ok) {
@@ -1785,6 +2208,38 @@ function finishRound() {
   }, function(err) {
     toast('通信エラー');
   });
+}
+
+/* === 手動バックアップ === */
+function manualBackup() {
+  if (!APP.me || !APP.me.playerId) { toast('プレイヤー情報なし'); return; }
+  var backup = {
+    me: APP.me,
+    scores: APP.myScores,
+    shotsLog: APP.shotsLog,
+    inputMode: APP.inputMode,
+    timestamp: new Date().toISOString()
+  };
+  var json = JSON.stringify(backup, null, 2);
+  // ローカルストレージへ保存
+  localStorage.setItem('gland_manual_backup', json);
+  // ダウンロード
+  try {
+    var blob = new Blob([json], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'gland_backup_' + new Date().toISOString().replace(/[:.]/g,'-') + '.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    }, 100);
+    toast('バックアップ保存完了');
+  } catch(e) {
+    toast('ローカル保存のみ完了');
+  }
+  haptic();
 }
 
 function openAdmin() {
@@ -2061,9 +2516,9 @@ function toggleScoreSettingsAcc() {
   var titleEl = document.getElementById('score-settings-acc-title');
   if (titleEl) {
     if (acc.classList.contains('open')) {
-      titleEl.textContent = '\u8a2d\u5b9a\u30fb\u30e2\u30fc\u30c9\u5207\u66ff\uff08\u9589\u3058\u308b\uff09';
+      titleEl.textContent = '設定・モード切替（閉じる）';
     } else {
-      titleEl.textContent = '\u8a2d\u5b9a\u30fb\u30e2\u30fc\u30c9\u5207\u66ff\uff08\u958b\u304f\uff09';
+      titleEl.textContent = '設定・モード切替（開く）';
     }
   }
 }
@@ -2189,19 +2644,24 @@ function _closeClubEditor() {
   if (w) w.remove();
 }
 
+/* === 隠しメニュー: ロゴ3回タップ === */
 var tapCount = 0;
+var tapTimer = null;
 document.addEventListener('click', function(e) {
   if (e.target.closest('#logo')) {
     tapCount++;
-    if (tapCount === 3) {
-      document.getElementById('organizer-btn').style.display = 'block';
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(function(){ tapCount = 0; }, 1200);
+    if (tapCount >= 3) {
+      var sec = document.getElementById('secret-header-btns');
+      sec.classList.toggle('show');
       tapCount = 0;
+      toast(sec.classList.contains('show') ? '隠しメニュー表示' : '隠しメニュー非表示');
     }
   }
 });
 </script>
-</body>
-</html>
-
 
 <script>window.SERVER_PARAMS = <?!= JSON.stringify(params || {}) ?>;</script>
+</body>
+</html>
