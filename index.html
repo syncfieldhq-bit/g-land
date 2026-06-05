@@ -117,94 +117,22 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .mode-badge.pro{background:#bb8fce;color:#fff;}
 .locked-info{background:rgba(0,0,0,0.4);border-left:4px solid var(--gold);padding:12px;border-radius:8px;margin-bottom:12px;font-size:14px;}
 
-/* ===== 【v4.4 大改造】巨大スコア表（老眼対応） ===== */
-.mate-table-wrap{
-  margin-top:14px;
-  background:rgba(0,0,0,0.4);
-  border-radius:16px;
-  padding:14px;
-  overflow-x:auto;
-  overflow-y:hidden;
-  -webkit-overflow-scrolling:touch;
-  scroll-behavior:smooth;
-  border:2px solid rgba(245,200,66,0.35);
-}
-.mate-table-wrap h4{
-  font-size:16px;
-  margin:0 0 10px;
-  color:var(--gold-bri);
-}
-.mate-table{
-  width:auto;
-  border-collapse:separate;
-  border-spacing:0;
-  min-width:100%;
-  font-size:22px;
-}
-.mate-table th,.mate-table td{
-  border:1px solid rgba(255,255,255,0.25);
-  padding:14px 10px;
-  text-align:center;
-  color:#fff;
-  min-width:64px;
-  font-weight:700;
-}
-.mate-table th{
-  background:rgba(0,0,0,0.5);
-  font-size:20px;
-  color:var(--gold-bri);
-}
-.mate-table th.hole-h{
-  cursor:pointer;
-  font-weight:900;
-}
-.mate-table th.hole-h.current-h{
-  background:linear-gradient(180deg,var(--gold-bri),var(--gold));
-  color:#000;
-  box-shadow:0 0 12px rgba(245,200,66,0.7);
-}
-.mate-table td.current-c{
-  background:rgba(245,200,66,0.28);
-  font-weight:900;
-  font-size:26px;
-  box-shadow:inset 0 0 0 2px var(--gold);
-}
-.mate-table td.player-name-cell{
-  text-align:left;
-  font-size:18px;
-  font-weight:800;
-  min-width:140px;
-  background: #1f1f1f;
-  color:var(--gold-bri);
-  position:sticky;
-  left:0;
-  z-index:5;
-}
-.mate-table tr.me td.player-name-cell{
-  background: #1f1f1f;
-  color:#fff;
-}
-.mate-table tr.me td.current-c{
-  background:rgba(245,200,66,0.45);
-}
-.mate-table tr.par-row td{
-  background:linear-gradient(180deg,#2a2a2a,#1f1f1f);
-  color:var(--gold-bri);
-  font-weight:900;
-  font-size:20px;
-}
-.mate-table tr.par-row td.current-c{
-  background:linear-gradient(180deg,#3a3a1a,#2a2a0a);
-}
-.mate-table td.total-col{
-  background: #1f1f1f;
-  color:var(--gold-bri);
-  font-weight:900;
-  font-size:24px;
-  position:sticky;
-  right:0;
-  z-index:4;
-}
+/* ===== 【v4.4】巨大スコア表（老眼対応） ===== */
+.mate-table-wrap{margin-top:14px;background:rgba(0,0,0,0.4);border-radius:16px;padding:14px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;border:2px solid rgba(245,200,66,0.35);}
+.mate-table-wrap h4{font-size:16px;margin:0 0 10px;color:var(--gold-bri);}
+.mate-table{width:auto;border-collapse:separate;border-spacing:0;min-width:100%;font-size:22px;}
+.mate-table th,.mate-table td{border:1px solid rgba(255,255,255,0.25);padding:14px 10px;text-align:center;color:#fff;min-width:64px;font-weight:700;}
+.mate-table th{background:rgba(0,0,0,0.5);font-size:20px;color:var(--gold-bri);}
+.mate-table th.hole-h{cursor:pointer;font-weight:900;}
+.mate-table th.hole-h.current-h{background:linear-gradient(180deg,var(--gold-bri),var(--gold));color:#000;box-shadow:0 0 12px rgba(245,200,66,0.7);}
+.mate-table td.current-c{background:rgba(245,200,66,0.28);font-weight:900;font-size:26px;box-shadow:inset 0 0 0 2px var(--gold);}
+.mate-table td.player-name-cell{text-align:left;font-size:18px;font-weight:800;min-width:140px;background:#1f1f1f;color:var(--gold-bri);position:sticky;left:0;z-index:5;}
+.mate-table tr.me td.player-name-cell{background:#1f1f1f;color:#fff;}
+.mate-table tr.me td{background:rgba(212,175,55,.18);}
+.mate-table tr.me td.current-c{background:rgba(245,200,66,0.45);}
+.mate-table tr.par-row td{background:linear-gradient(180deg,#2a2a2a,#1f1f1f);color:var(--gold-bri);font-weight:900;font-size:20px;}
+.mate-table tr.par-row td.current-c{background:linear-gradient(180deg,#3a3a1a,#2a2a0a);}
+.mate-table td.total-col{background:#1f1f1f;color:var(--gold-bri);font-weight:900;font-size:24px;position:sticky;right:0;z-index:4;}
 
 .hole-zoom-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;}
 .hole-zoom-overlay.show{display:flex;}
@@ -279,13 +207,11 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .score-settings-acc.open .score-settings-acc-body{max-height:400px;padding:10px;}
 .score-settings-acc-body .mode-switcher,.score-settings-acc-body .display-mode-switcher{margin-bottom:8px;}
 .score-settings-acc-body .display-mode-switcher:last-child{margin-bottom:0;}
-
 .player-tabs{display:flex;gap:6px;background:rgba(0,0,0,0.4);padding:6px;border-radius:12px;margin-bottom:10px;overflow-x:auto;border:2px solid rgba(245,200,66,0.4);}
 .player-tabs button{flex:1;min-width:80px;padding:10px 8px;border:0;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;min-height:46px;}
 .player-tabs button.active{background:linear-gradient(180deg,var(--gold-bri),var(--gold));color:#000;}
 .player-tabs button.locked{opacity:0.5;cursor:not-allowed;background:rgba(120,120,120,0.3);}
 .player-tabs button .lock-mark{font-size:10px;display:block;color:#ff7466;margin-top:2px;}
-
 .confirm-bar{display:flex;gap:8px;margin-top:6px;margin-bottom:14px;background:rgba(0,0,0,0.4);padding:10px;border-radius:14px;border:1px solid rgba(245,200,66,0.4);}
 .confirm-bar button{flex:1;padding:14px 8px;border:0;border-radius:10px;font-weight:800;font-size:14px;min-height:52px;cursor:pointer;}
 .confirm-bar .btn-finish{background:linear-gradient(180deg,var(--gold-bri),var(--gold));color:#000;}
@@ -317,13 +243,10 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 .quick-screen .hero p{margin:0;font-size:13px;color:var(--text-sub);}
 .qr-big{background:#fff;padding:14px;border-radius:14px;display:inline-block;margin-top:12px;}
 .qr-big img{display:block;width:240px;height:240px;}
-
-/* 【v4.4】下部の設定エリア(タブ・アコーディオン) */
-.bottom-settings-area{
-  margin-top:24px;
-  padding-top:14px;
-  border-top:2px dashed rgba(245,200,66,0.3);
-}
+.bottom-settings-area{margin-top:24px;padding-top:14px;border-top:2px dashed rgba(245,200,66,0.3);}
+.save-queue-indicator{position:fixed;top:env(safe-area-inset-top,0);right:8px;z-index:150;font-size:11px;padding:4px 10px;border-radius:0 0 10px 10px;background:rgba(0,0,0,0.7);color:var(--gold-bri);font-weight:700;pointer-events:none;transition:opacity 0.3s;opacity:0;}
+.save-queue-indicator.show{opacity:1;}
+.save-queue-indicator.error{background:rgba(192,57,43,0.85);color:#fff;}
 </style>
 </head>
 <body>
@@ -346,6 +269,8 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
   </div>
 </header>
 
+<div id="save-queue-indicator" class="save-queue-indicator">同期中...</div>
+
 <div class="container">
 
 <div id="screen-register">
@@ -367,16 +292,11 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 <div id="screen-main" class="hidden">
 
 <div id="tab-content-score">
-
-  <!-- ============================================
-       【最上部】プレイヤー名・現在スコア表示
-       ============================================ -->
   <div class="me-bar">
     <div><div class="lbl">プレイヤー</div><div class="v1" id="me-name">-</div></div>
     <div style="text-align:right;"><div class="lbl">合計 / PAR差</div><div class="v2" id="me-total">- / -</div></div>
   </div>
 
-  <!-- プレイヤー選択タブ(複数担当時のみ) -->
   <div id="player-tabs-wrap" class="hidden">
     <div style="font-size:11px;color:var(--gold-bri);font-weight:700;margin-bottom:4px;">入力対象プレイヤー</div>
     <div class="player-tabs" id="player-tabs"></div>
@@ -387,22 +307,13 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
     <div class="qtxt"><b>この組に同伴者を招待</b><div style="font-size:12px;color:var(--text-sub);margin-top:4px;">スキャンで同じ組に合流</div><small id="invite-qr-url">-</small></div>
   </div>
 
-  <!-- ============================================
-       【2番目】打数・パット数の入力パネル + 巨大スコア表（一体化エリア）
-       ============================================ -->
   <div id="hole-list"></div>
 
-  <!-- ============================================
-       【4番目】終了して確定 / 手動バックアップ
-       ============================================ -->
   <div class="confirm-bar">
     <button class="btn-finish" onclick="confirmFinishRound()">✅ 終了して確定</button>
     <button class="btn-backup" onclick="manualBackupNow()">💾 手動バックアップ</button>
   </div>
 
-  <!-- ============================================
-       【最下部】タブ + 設定・モード切替アコーディオン
-       ============================================ -->
   <div class="bottom-settings-area">
     <div class="nav">
       <button id="tab-score" class="active" onclick="showTab('score')">スコア入力</button>
@@ -434,7 +345,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
       </div>
     </div>
   </div>
-
 </div>
 
 <div id="tab-content-lb" class="hidden">
@@ -550,7 +460,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 </div>
 </div>
 
-<!-- ホール別ズーム（タップで個別ホール詳細） -->
 <div id="holeZoomOverlay" class="hole-zoom-overlay" onclick="closeHoleZoom()">
 <div class="hole-zoom-card" onclick="event.stopPropagation()">
 <div class="hz-num" id="hzNum">1H</div>
@@ -559,7 +468,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 <button class="ghost" style="width:100%;margin-top:20px;" onclick="closeHoleZoom()">閉じる</button>
 </div>
 </div>
-
 <div class="modal-bg" id="modal-pwa">
 <div class="pwa-modal">
 <h3 id="pwa-title">ホーム画面に追加</h3>
@@ -597,7 +505,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
         <input type="number" id="rm-comp-groupcount" value="4" min="1" max="32">
         <button class="primary" onclick="createCompetitionRound()">コンペラウンド作成</button>
       </div>
-
       <div class="round-mgr-section">
         <h4>詳細設定（ダブルペリア等）</h4>
         <div style="font-size:12px;color:var(--text-sub);margin-bottom:8px;">既存の設定はそのまま維持されます。下記から開けます。</div>
@@ -744,9 +651,11 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 
 <script>
 /* ==========================================================================
- * G-LAND v4.4 フロントエンド
- * 【UI大改造】上下逆転 + スコア表巨大化 + 現在ホール自動センター
- * ※ 裏側ロジックは完全維持
+ * G-LAND v4.6 フロントエンド
+ * 【v4.4】UI大改造: 上下逆転 + 巨大スコア表 + 自動センター
+ * 【v4.5】爆速リファクタリング: 通信非同期化 + 保存キュー
+ * 【v4.6】起動高速化: BootCacheによる瞬間起動 + 段階的読み込み
+ *        + 保存成功時/オンライン復帰時の即時再描画
  * ========================================================================== */
 const APP = {
   courses:[], activeCourseId:'', periaHoles:[], pars:[], prizes:[], isFinalized:false,
@@ -777,44 +686,227 @@ const APP = {
   pendingConfirm: null,
   assignDragData: null,
   assignBuckets: {},
-  assignFriendPool: []
+  assignFriendPool: [],
+  currentTab: 'score'
 };
 
 const GAS_URL = "https://script.google.com/macros/s/AKfycbyJbjVYmqATkJe2Ial5XOK_CYXCfkPWEIpKOtZziwDQ490l-AfNNF43gwls20y1N2FHgg/exec";
 
+/* ==========================================================================
+ * 【v4.6 新規】BootCache - 起動キャッシュ機構
+ * - 前回起動時の courses / pars / 自分の最新スコアをlocalStorageに保存
+ * - 次回起動時はサーバー応答を待たずに画面を出す（瞬間起動）
+ * ========================================================================== */
+const BootCache = {
+  KEY_BUNDLE: 'gland_boot_bundle_v1',
+  MAX_AGE_MS: 24 * 60 * 60 * 1000,  // 24時間以内のキャッシュのみ使用
+
+  save: function(bundle) {
+    try {
+      var data = {
+        courses: bundle.courses || [],
+        activeCourseId: bundle.activeCourseId || '',
+        periaHoles: bundle.periaHoles || [],
+        prizes: bundle.prizes || [],
+        isFinalized: !!bundle.isFinalized,
+        savedAt: Date.now()
+      };
+      localStorage.setItem(this.KEY_BUNDLE, JSON.stringify(data));
+    } catch(e) { console.warn('[BootCache] save failed:', e); }
+  },
+
+  load: function() {
+    try {
+      var raw = localStorage.getItem(this.KEY_BUNDLE);
+      if (!raw) return null;
+      var data = JSON.parse(raw);
+      if (!data || !data.savedAt) return null;
+      if (Date.now() - data.savedAt > this.MAX_AGE_MS) return null;
+      return data;
+    } catch(e) { return null; }
+  },
+
+  saveMyScores: function(playerId, scores) {
+    try {
+      localStorage.setItem('gland_scores_' + playerId, JSON.stringify({
+        scores: scores,
+        savedAt: Date.now()
+      }));
+    } catch(e) {}
+  },
+
+  loadMyScores: function(playerId) {
+    try {
+      var raw = localStorage.getItem('gland_scores_' + playerId);
+      if (!raw) return null;
+      var data = JSON.parse(raw);
+      if (!data || !data.savedAt) return null;
+      if (Date.now() - data.savedAt > this.MAX_AGE_MS) return null;
+      return data.scores;
+    } catch(e) { return null; }
+  },
+
+  clear: function() {
+    try {
+      localStorage.removeItem(this.KEY_BUNDLE);
+    } catch(e) {}
+  }
+};
+
+/* ==========================================================================
+ * 【v4.5】SaveQueue - 保存キューシステム
+ * - 通信を Fire-and-Forget 化し、UIをブロックしない
+ * - 最大2並列、失敗時は指数バックオフで3回まで自動リトライ
+ * - dedupeKey で同一スコアの古いリクエストを破棄
+ * ========================================================================== */
+const SaveQueue = {
+  queue: [],
+  inflight: 0,
+  maxParallel: 2,
+  totalSeen: 0,
+  totalDone: 0,
+  hasError: false,
+  indicatorTimer: null,
+
+  enqueue: function(job) {
+    if (job.dedupeKey) {
+      for (var i = this.queue.length - 1; i >= 0; i--) {
+        if (this.queue[i].dedupeKey === job.dedupeKey) {
+          this.queue.splice(i, 1);
+        }
+      }
+    }
+    job.retries = job.retries || 0;
+    this.queue.push(job);
+    this.totalSeen++;
+    this._updateIndicator();
+    this._pump();
+  },
+
+  _pump: function() {
+    while (this.inflight < this.maxParallel && this.queue.length > 0) {
+      var job = this.queue.shift();
+      this._execute(job);
+    }
+  },
+
+  _execute: function(job) {
+    var self = this;
+    self.inflight++;
+    self._updateIndicator();
+
+    var payload = JSON.stringify({ funcName: job.fn, args: job.args || [] });
+    var fetchOpts = { method: 'POST', body: payload };
+    try { fetchOpts.keepalive = true; } catch(e) {}
+
+    fetch(GAS_URL, fetchOpts)
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if (res && res.success) {
+          if (job.onSuccess) {
+            try { job.onSuccess(res.data); } catch(e) { console.warn('[SaveQueue] onSuccess err:', e); }
+          }
+          self.totalDone++;
+        } else {
+          throw new Error(res && res.error ? res.error : 'unknown error');
+        }
+      })
+      .catch(function(err) {
+        console.warn('[SaveQueue] job failed:', job.fn, err);
+        if (job.retries < 3) {
+          job.retries++;
+          var delay = 500 * Math.pow(3, job.retries - 1);
+          setTimeout(function() {
+            self.queue.unshift(job);
+            self._pump();
+          }, delay);
+        } else {
+          self.hasError = true;
+          if (job.onError) {
+            try { job.onError(err); } catch(e) {}
+          }
+          self.totalDone++;
+        }
+      })
+      .then(function() {
+        self.inflight--;
+        self._updateIndicator();
+        self._pump();
+      });
+  },
+
+  _updateIndicator: function() {
+    var el = document.getElementById('save-queue-indicator');
+    if (!el) return;
+    var pending = this.queue.length + this.inflight;
+    if (pending > 0) {
+      el.textContent = '同期中... (' + pending + ')';
+      el.classList.add('show');
+      el.classList.toggle('error', this.hasError);
+      clearTimeout(this.indicatorTimer);
+    } else {
+      if (this.totalDone > 0 && !this.hasError) {
+        el.textContent = '✓ 同期完了';
+        el.classList.add('show');
+        el.classList.remove('error');
+      } else if (this.hasError) {
+        el.textContent = '⚠ 一部送信失敗';
+        el.classList.add('show', 'error');
+      }
+      clearTimeout(this.indicatorTimer);
+      var self = this;
+      this.indicatorTimer = setTimeout(function() {
+        el.classList.remove('show');
+        if (!self.hasError) {
+          self.totalSeen = 0;
+          self.totalDone = 0;
+        }
+      }, 2200);
+    }
+  }
+};
+
+/* gasCall - Promise版（同期応答が必要な処理用） */
 function gasCall(fnName) {
   var args = Array.prototype.slice.call(arguments, 1);
   return new Promise(function(resolve, reject) {
-    fetch(GAS_URL, {
+    var fetchOpts = {
       method: 'POST',
       body: JSON.stringify({ funcName: fnName, args: args })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(res) {
-      if(res.success) resolve(res.data);
-      else reject(new Error(res.error));
-    })
-    .catch(reject);
+    };
+    try { fetchOpts.keepalive = true; } catch(e) {}
+    fetch(GAS_URL, fetchOpts)
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        if(res.success) resolve(res.data);
+        else reject(new Error(res.error));
+      })
+      .catch(reject);
   });
 }
 
+/* callGAS - Fire-and-Forget化 */
 function callGAS(fn, args, success, failure) {
-  fetch(GAS_URL, {
-    method: 'POST',
-    body: JSON.stringify({ funcName: fn, args: args || [] })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(res) {
-    if(res.success) {
-      if(success) success(res.data);
-    } else {
-      if(failure) failure(new Error(res.error));
+  SaveQueue.enqueue({
+    fn: fn,
+    args: args || [],
+    onSuccess: success,
+    onError: failure || function(err) {
+      console.warn('[callGAS] background error:', fn, err);
     }
-  })
-  .catch(function(err) {
-    console.error('[callGAS] error', err);
-    if(failure) failure(err);
-    else if(typeof toast === 'function') toast('通信エラー');
+  });
+}
+
+/* スコア更新専用（重複排除付き） */
+function callGAS_score(fn, args, success, failure, dedupeKey) {
+  SaveQueue.enqueue({
+    fn: fn,
+    args: args || [],
+    onSuccess: success,
+    onError: failure || function(err) {
+      console.warn('[callGAS_score] background error:', fn, err);
+    },
+    dedupeKey: dedupeKey
   });
 }
 
@@ -852,7 +944,7 @@ function getOrCreateDeviceId() {
 }
 
 window.addEventListener('load', function() {
-  console.log('[BOOT] window.load - start');
+  console.log('[BOOT v4.6] window.load - start');
   APP.deviceId = getOrCreateDeviceId();
   bootApp().catch(function(err) {
     console.error('[BOOT] fatal:', err);
@@ -877,9 +969,60 @@ window.addEventListener('load', function() {
   }, 5000);
 });
 
+/* ==========================================================================
+ * 【v4.6】新bootApp - キャッシュ即起動対応
+ * STAGE 1: ローカルキャッシュから瞬間起動（0.1秒）
+ * STAGE 2: バックグラウンドでサーバーから最新取得・差分更新
+ * 初回時のみ: getBootBundle で1リクエスト統合取得
+ * ========================================================================== */
 async function bootApp() {
   var BOOT_START = Date.now();
-  console.log('[BOOT] bootApp start');
+  console.log('[BOOT v4.6] bootApp start');
+
+  // ====== STAGE 1: ローカルキャッシュからの瞬間起動 ======
+  var cached = BootCache.load();
+  if (cached && cached.courses && cached.courses.length > 0) {
+    console.log('[BOOT] using cached bundle (age=' +
+      Math.floor((Date.now() - cached.savedAt) / 1000) + 's)');
+    setBootSubText('キャッシュから復元中...');
+    APP.courses = cached.courses;
+    APP.activeCourseId = cached.activeCourseId;
+    APP.periaHoles = cached.periaHoles || [];
+    APP.prizes = cached.prizes || [];
+    APP.isFinalized = !!cached.isFinalized;
+    var active = APP.courses.find(function(c){ return c.id === APP.activeCourseId; }) || APP.courses[0];
+    APP.pars = active ? active.pars : new Array(18).fill(4);
+    populateCourseDropdowns();
+    document.getElementById('fin-badge').classList.toggle('hidden', !APP.isFinalized);
+
+    // 自分のスコアキャッシュも復元
+    var savedMe = null;
+    try { savedMe = JSON.parse(localStorage.getItem('gland_me') || 'null'); } catch(e) {}
+    if (savedMe && savedMe.playerId) {
+      var cachedScores = BootCache.loadMyScores(savedMe.playerId);
+      if (cachedScores && cachedScores.length === 18) {
+        APP.myScores = cachedScores;
+        APP.playerScoresMap[savedMe.playerId] = cachedScores;
+      }
+    }
+
+    // ★即座に画面を表示（サーバー応答を待たない）
+    APP.bootReady = true;
+    hideBootOverlay();
+    try {
+      await routeAfterBoot();
+    } catch(err) {
+      console.error('[BOOT] routing failed (cached):', err);
+    }
+    console.log('[BOOT] ⚡ instant boot complete in ' + (Date.now() - BOOT_START) + 'ms');
+
+    // ====== STAGE 2: バックグラウンドで最新データに更新 ======
+    setTimeout(refreshBootDataInBackground, 100);
+    setTimeout(showPWAGuideIfNeeded, 2000);
+    return;
+  }
+
+  // ====== 初回起動 or キャッシュ無効 → 統合APIで一括取得 ======
   setBootSubText('サーバーへ接続中...');
 
   var overallTimer = setTimeout(function() {
@@ -889,50 +1032,70 @@ async function bootApp() {
     hideBootOverlay();
   }, 25000);
 
-  setBootSubText('コース一覧を取得中... (最大15秒)');
-  var courseRes;
+  setBootSubText('初期データを取得中... (最大15秒)');
+
+  // ★1リクエストで全部取れる API（getBootBundle）を優先
+  var bundle = null;
   try {
-    courseRes = await gasCall('getCourses');
-  } catch (err) {
-    console.error('[BOOT] STEP1 failed:', err);
-    clearTimeout(overallTimer);
-    showStartupErrorBanner('コース取得に失敗しました', 'エラー: ' + (err && err.message || err));
-    hideBootOverlay();
-    return;
+    bundle = await gasCall('getBootBundle');
+  } catch(err) {
+    console.warn('[BOOT] getBootBundle未実装/失敗、フォールバック', err);
+    bundle = null;
   }
 
-  if (!courseRes || !courseRes.ok) {
-    var errMsg = (courseRes && courseRes.error) || 'Coursesシートが見つかりません。';
-    showStartupErrorBanner(errMsg, '');
-    APP.courses = [];
+  if (bundle && bundle.ok) {
+    APP.courses = bundle.courses || [];
+    APP.activeCourseId = bundle.activeCourseId || (APP.courses[0] ? APP.courses[0].id : '');
+    APP.periaHoles = bundle.periaHoles || [];
+    APP.prizes = bundle.prizes || [];
+    APP.isFinalized = !!bundle.isFinalized;
+    BootCache.save(bundle);
+    console.log('[BOOT] getBootBundle成功');
   } else {
-    APP.courses = courseRes.courses || [];
+    // フォールバック: 旧2APIを直列実行
+    console.log('[BOOT] フォールバック: getCourses + getInitData');
+    var courseRes;
+    try {
+      courseRes = await gasCall('getCourses');
+    } catch (err) {
+      clearTimeout(overallTimer);
+      showStartupErrorBanner('コース取得に失敗しました', String(err.message || err));
+      hideBootOverlay();
+      return;
+    }
+    if (!courseRes || !courseRes.ok) {
+      showStartupErrorBanner((courseRes && courseRes.error) || 'Coursesシートが見つかりません。', '');
+      APP.courses = [];
+    } else {
+      APP.courses = courseRes.courses || [];
+    }
+    populateCourseDropdowns();
+
+    var initData;
+    try {
+      initData = await gasCall('getInitData');
+    } catch(err) {
+      initData = { courses: APP.courses, activeCourseId: '', periaHoles: [], prizes: [], isFinalized: false };
+    }
+    if (initData) {
+      if (initData.courses && initData.courses.length > 0) APP.courses = initData.courses;
+      APP.activeCourseId = initData.activeCourseId || (APP.courses[0] ? APP.courses[0].id : '');
+      APP.periaHoles = initData.periaHoles || [];
+      APP.prizes = initData.prizes || [];
+      APP.isFinalized = !!initData.isFinalized;
+      BootCache.save({
+        courses: APP.courses,
+        activeCourseId: APP.activeCourseId,
+        periaHoles: APP.periaHoles,
+        prizes: APP.prizes,
+        isFinalized: APP.isFinalized
+      });
+    }
   }
 
   populateCourseDropdowns();
-
-  setBootSubText('設定情報を取得中...');
-  var initData;
-  try {
-    initData = await gasCall('getInitData');
-  } catch (err) {
-    console.warn('[BOOT] STEP3 failed:', err);
-    initData = { courses: APP.courses, activeCourseId: '', periaHoles: [], prizes: [], isFinalized: false };
-  }
-
-  if (initData) {
-    if (initData.courses && initData.courses.length > 0) {
-      APP.courses = initData.courses;
-    }
-    APP.activeCourseId = initData.activeCourseId || (APP.courses[0] ? APP.courses[0].id : '');
-    APP.periaHoles = initData.periaHoles || [];
-    APP.prizes = initData.prizes || [];
-    APP.isFinalized = !!initData.isFinalized;
-    populateCourseDropdowns();
-  }
-
-  var active = APP.courses.find(function(c){ return c.id === APP.activeCourseId; }) || APP.courses[0];
-  APP.pars = active ? active.pars : new Array(18).fill(4);
+  var active2 = APP.courses.find(function(c){ return c.id === APP.activeCourseId; }) || APP.courses[0];
+  APP.pars = active2 ? active2.pars : new Array(18).fill(4);
   document.getElementById('fin-badge').classList.toggle('hidden', !APP.isFinalized);
 
   if (APP.courses.length === 0) {
@@ -951,6 +1114,64 @@ async function bootApp() {
   hideBootOverlay();
   console.log('[BOOT] complete in ' + (Date.now() - BOOT_START) + 'ms');
   setTimeout(showPWAGuideIfNeeded, 1500);
+}
+
+/* ==========================================================================
+ * 【v4.6 新規】バックグラウンドでの差分更新
+ * - キャッシュ起動後、裏側でサーバーから最新を取得し画面を更新
+ * - ユーザーは「操作しながら」自動的に最新データに切り替わる
+ * ========================================================================== */
+function refreshBootDataInBackground() {
+  console.log('[BG-REFRESH] start');
+  callGAS('getBootBundle', [], function(bundle) {
+    if (!bundle || !bundle.ok) {
+      console.warn('[BG-REFRESH] getBootBundle failed, fallback to getInitData');
+      // フォールバック
+      callGAS('getInitData', [], function(initData) {
+        if (!initData) return;
+        _applyBootBundle(initData);
+      });
+      return;
+    }
+    _applyBootBundle(bundle);
+    console.log('[BG-REFRESH] ✅ done');
+  }, function(err) {
+    console.warn('[BG-REFRESH] failed:', err);
+  });
+}
+
+function _applyBootBundle(bundle) {
+  var changed = false;
+  if (bundle.courses && JSON.stringify(bundle.courses) !== JSON.stringify(APP.courses)) {
+    APP.courses = bundle.courses || [];
+    changed = true;
+  }
+  if (bundle.activeCourseId && bundle.activeCourseId !== APP.activeCourseId) {
+    APP.activeCourseId = bundle.activeCourseId;
+    changed = true;
+  }
+  APP.periaHoles = bundle.periaHoles || [];
+  APP.prizes = bundle.prizes || [];
+  var oldFinalized = APP.isFinalized;
+  APP.isFinalized = !!bundle.isFinalized;
+  if (oldFinalized !== APP.isFinalized) changed = true;
+
+  BootCache.save({
+    courses: APP.courses,
+    activeCourseId: APP.activeCourseId,
+    periaHoles: APP.periaHoles,
+    prizes: APP.prizes,
+    isFinalized: APP.isFinalized
+  });
+
+  if (changed) {
+    var active = APP.courses.find(function(c){ return c.id === APP.activeCourseId; }) || APP.courses[0];
+    APP.pars = active ? active.pars : new Array(18).fill(4);
+    populateCourseDropdowns();
+    document.getElementById('fin-badge').classList.toggle('hidden', !APP.isFinalized);
+    if (APP.currentTab === 'score' && APP.me) renderHoles();
+    console.log('[BG-REFRESH] UIを最新データで更新');
+  }
 }
 
 function forceStopBoot() {
@@ -1181,31 +1402,39 @@ function register() {
     nickname: nickname, realName: realName, affiliation: groupName
   }));
   toast('登録中...');
-  callGAS('registerPlayer', [{ courseId: courseId, nickname: nickname, realName: realName, groupName: groupName }], function(res) {
-    if (!res || !res.ok) {
-      toast(res && res.msg ? res.msg : '登録失敗');
-      return;
-    }
-    APP.me = {
-      playerId: res.playerId,
-      userId: res.userId || '',
-      nickname: nickname,
-      realName: realName,
-      groupName: groupName,
-      courseId: courseId,
-      compId: APP.compId || '',
-      proId: APP.proId || '',
-      roomId: APP.roomId || ''
-    };
-    localStorage.setItem('gland_me', JSON.stringify(APP.me));
-    localStorage.setItem('gland_player_id', res.playerId);
-    toast('登録完了');
-    enterMain();
-  }, function(err) {
-    toast('登録エラー');
-  });
+  gasCall('registerPlayer', { courseId: courseId, nickname: nickname, realName: realName, groupName: groupName })
+    .then(function(res) {
+      if (!res || !res.ok) {
+        toast(res && res.msg ? res.msg : '登録失敗');
+        return;
+      }
+      APP.me = {
+        playerId: res.playerId,
+        userId: res.userId || '',
+        nickname: nickname,
+        realName: realName,
+        groupName: groupName,
+        courseId: courseId,
+        compId: APP.compId || '',
+        proId: APP.proId || '',
+        roomId: APP.roomId || ''
+      };
+      localStorage.setItem('gland_me', JSON.stringify(APP.me));
+      localStorage.setItem('gland_player_id', res.playerId);
+      toast('登録完了');
+      enterMain();
+    })
+    .catch(function(err) {
+      toast('登録エラー');
+    });
 }
 
+/* ==========================================================================
+ * 【v4.6】新enterMain - 段階的読み込み
+ * STAGE 1: ローカルキャッシュから即描画（待ち時間ゼロ）
+ * STAGE 2: バックグラウンドでサーバーから最新スコア取得・差分更新
+ * STAGE 3: 同伴メンバー情報は500ms遅延ロード
+ * ========================================================================== */
 function enterMain() {
   hideAllScreens();
   document.getElementById('screen-main').classList.remove('hidden');
@@ -1227,19 +1456,48 @@ function enterMain() {
   APP.currentPlayerIdx = 0;
   renderPlayerTabs();
 
+  // ★STAGE 1: ローカルキャッシュからスコア即復元
+  var cachedScores = BootCache.loadMyScores(APP.me.playerId);
+  if (cachedScores && cachedScores.length === 18) {
+    APP.myScores = cachedScores;
+    console.log('[enterMain] ⚡ cached scores restored');
+  } else {
+    APP.myScores = [];
+    for (var i = 0; i < 18; i++) APP.myScores.push({ stroke: 0, putt: 0 });
+  }
+  APP.playerScoresMap[APP.me.playerId] = APP.myScores;
+  APP.currentHole = 0;
+  renderHoles();  // ★即描画（ユーザーは即操作可能）
+  buildHolePicker();
+
+  // ★STAGE 2: バックグラウンドでサーバーから最新スコア取得
   callGAS('getMyScores', [APP.me.playerId], function(scores) {
-    APP.myScores = scores || [];
-    if (!APP.myScores || APP.myScores.length < 18) {
-      APP.myScores = [];
-      for (var i = 0; i < 18; i++) APP.myScores.push({ stroke: 0, putt: 0 });
+    if (scores && scores.length >= 18) {
+      // ローカルとサーバーで差分があれば更新
+      var changed = false;
+      for (var i = 0; i < 18; i++) {
+        if (!APP.myScores[i] ||
+            APP.myScores[i].stroke !== scores[i].stroke ||
+            APP.myScores[i].putt !== scores[i].putt) {
+          changed = true;
+          break;
+        }
+      }
+      if (changed) {
+        APP.myScores = scores;
+        APP.playerScoresMap[APP.me.playerId] = scores;
+        renderHoles();
+        console.log('[enterMain] scores updated from server');
+      }
+      BootCache.saveMyScores(APP.me.playerId, scores);
     }
-    APP.playerScoresMap[APP.me.playerId] = APP.myScores;
-    APP.currentHole = 0;
-    renderHoles();
-    buildHolePicker();
-    // 初期表示時に自動センター
-    setTimeout(centerCurrentHoleInTable, 300);
+    setTimeout(centerCurrentHoleInTable, 100);
   });
+
+  // ★STAGE 3: 同伴メンバーは500ms遅延（最初の描画ブロックを邪魔しない）
+  setTimeout(function() {
+    if (APP.currentTab === 'score') loadGroupMatesTable();
+  }, 500);
 }
 
 function prepareInviteQR() {
@@ -1254,8 +1512,9 @@ function prepareInviteQR() {
 function toggleInviteQR() {
   var card = document.getElementById('invite-qr-card');
   var btn = document.getElementById('invite-toggle-btn');
+  if (!card) return;
   card.classList.toggle('hidden');
-  btn.textContent = card.classList.contains('hidden') ? '同伴招待QRを表示' : '招待QRを隠す';
+  if (btn) btn.textContent = card.classList.contains('hidden') ? '同伴招待QRを表示' : '招待QRを隠す';
   if (!card.classList.contains('hidden')) prepareInviteQR();
 }
 function buildInviteUrl(paramsObj) {
@@ -1412,10 +1671,10 @@ function acquirePlayerLock(playerId) {
 setInterval(function() {
   if (!APP.me || !APP.me.playerId) return;
   acquirePlayerLock(APP.me.playerId);
-}, 30000);
+}, 45000);
 
 /* ==========================================================================
- * Holes rendering（上下逆転対応＋巨大スコア表）
+ * 【v4.4 / v4.6】Holes rendering（上下逆転対応＋巨大スコア表）
  * ========================================================================== */
 function renderHoles() {
   if (!APP.me || !APP.me.playerId) {
@@ -1524,6 +1783,9 @@ function renderCounterUI(i, par, s) {
     '</div>';
 }
 
+/* ==========================================================================
+ * 詳細ログUI（アカデミー版 PHASE 2A）
+ * ========================================================================== */
 var PHASE2A_DEFAULT_CLUBS = ['D','3W','5W','U','4I','5I','6I','7I','8I','9I','PW','SW','LW','PT'];
 var PHASE2A_RESULTS = [
   { key:'FW',  label:'FW' },
@@ -1605,6 +1867,10 @@ function detailRemoveShot(i, idx) {
   renderHoles();
   syncDetail(i);
 }
+
+/* ==========================================================================
+ * 【v4.6 新規】syncDetail - 保存成功時に即時再描画
+ * ========================================================================== */
 function syncDetail(i) {
   var shots = APP.shotsLog[i] || [];
   if (!APP.myScores[i]) APP.myScores[i] = { stroke: 0, putt: 0 };
@@ -1612,14 +1878,19 @@ function syncDetail(i) {
   APP.myScores[i].putt = shots.filter(function(sh){ return sh.club === 'PT'; }).length;
   clearTimeout(saveTimer[i]);
   saveTimer[i] = setTimeout(function() {
-    callGAS('updateScoreWithMode', [{
+    callGAS_score('updateScoreWithMode', [{
       playerId: APP.me.playerId,
       hole: i + 1,
       stroke: APP.myScores[i].stroke,
       putt: APP.myScores[i].putt,
       inputMode: APP.inputMode,
       shotsJson: JSON.stringify(shots)
-    }], function(){});
+    }], function(res) {
+      // ★v4.6: 詳細ログ保存成功時、同伴スコア表を即時再描画
+      scheduleMateTableRefresh();
+      // ★v4.6: ローカルキャッシュも更新
+      BootCache.saveMyScores(APP.me.playerId, APP.myScores);
+    }, null, 'detail-' + APP.me.playerId + '-' + i);
   }, 400);
   updateMyTotal();
   buildHolePicker();
@@ -1633,23 +1904,24 @@ function autoSaveCurrentHoleIfBlank() {
   if (APP.inputMode === 'counter') return;
   var par = APP.pars[i] || 4;
   APP.myScores[i] = { stroke: par, putt: 2 };
-  // 通信はさせますが、関数の中身を呼び出して読み込みを完遂させます
-saveScoreImmediate(i);
+  saveScoreImmediate(i);
 }
 function saveScoreImmediate(i) {
-  callGAS('updateScore', [{
+  callGAS_score('updateScore', [{
     playerId: APP.me.playerId,
     hole: i + 1,
     stroke: APP.myScores[i].stroke,
     putt: APP.myScores[i].putt
-  }], function(){});
+  }], function(res) {
+    // ★v4.6: 即時保存もキャッシュ更新
+    BootCache.saveMyScores(APP.me.playerId, APP.myScores);
+  }, null, 'score-' + APP.me.playerId + '-' + i);
 }
 function prevHole() {
   autoSaveCurrentHoleIfBlank();
   if (APP.currentHole > 0) {
     APP.currentHole--;
     renderHoles();
-    // 【自動センター】前へボタン
     setTimeout(centerCurrentHoleInTable, 100);
   }
 }
@@ -1658,7 +1930,6 @@ function nextHole() {
   if (APP.currentHole < 17) {
     APP.currentHole++;
     renderHoles();
-    // 【自動センター】次へボタン
     setTimeout(centerCurrentHoleInTable, 100);
   }
 }
@@ -1695,13 +1966,41 @@ function jumpToHole(idx) {
   setTimeout(centerCurrentHoleInTable, 100);
 }
 
+/* ==========================================================================
+ * 同伴メンバースコア表（スコアタブ表示中のみポーリング）
+ * ========================================================================== */
 var _mateTimer = null;
 function loadGroupMatesTable() {
   if (!APP.me || !APP.me.courseId || !APP.me.groupName) return;
   callGAS('getGroupMatesScores', [APP.me.courseId, APP.me.groupName, APP.me.playerId], renderGroupMatesTable, function(err){});
   if (_mateTimer) clearTimeout(_mateTimer);
-  _mateTimer = setTimeout(loadGroupMatesTable, 30000);
+  if (APP.currentTab === 'score') {
+    _mateTimer = setTimeout(loadGroupMatesTable, 30000);
+  }
 }
+
+/* ==========================================================================
+ * 【v4.6 新規】保存成功時の即時再描画（連打吸収付き）
+ * - 連続保存時に再取得を連発しないよう200ms吸収
+ * - スコアタブ表示中のみ実行（リーダーボード/履歴タブでは無駄打ち防止）
+ * - SaveQueueがまだ処理中なら少し待つ（書込→読出の競合回避）
+ * ========================================================================== */
+var _refreshDebounceTimer = null;
+function scheduleMateTableRefresh() {
+  if (APP.currentTab !== 'score') return;
+  clearTimeout(_refreshDebounceTimer);
+  _refreshDebounceTimer = setTimeout(function() {
+    // SaveQueueがまだ処理中なら少し待つ
+    if (SaveQueue.queue.length + SaveQueue.inflight > 0) {
+      _refreshDebounceTimer = setTimeout(scheduleMateTableRefresh, 500);
+      return;
+    }
+    loadGroupMatesTable();
+    // ランキングタブのキャッシュも無効化（次に開いた時に新鮮）
+    APP.lbData = null;
+  }, 200);
+}
+
 function renderGroupMatesTable(data) {
   var body = document.getElementById('mate-table-body');
   if (!body) return;
@@ -1756,12 +2055,11 @@ function renderGroupMatesTable(data) {
 
   body.innerHTML = '<table class="mate-table">' + head + parRow + rows + '</table>';
 
-  // 【自動センター】テーブル描画完了後に呼ぶ
   setTimeout(centerCurrentHoleInTable, 50);
 }
 
 /* ==========================================================================
- * 【v4.4 新規】現在ホール自動センター合わせ
+ * 【v4.4】現在ホール自動センター合わせ
  * 巨大スコア表の中で、現在ホールの列を表示領域中央に持ってくる
  * ========================================================================== */
 function centerCurrentHoleInTable() {
@@ -1773,7 +2071,6 @@ function centerCurrentHoleInTable() {
     if (!th) return;
     var wrapRect = wrap.getBoundingClientRect();
     var thRect = th.getBoundingClientRect();
-    // スクロール先 = 列の左位置 - (表示幅 / 2) + (列幅 / 2)
     var targetLeft = wrap.scrollLeft + (thRect.left - wrapRect.left) - (wrap.clientWidth / 2) + (thRect.width / 2);
     wrap.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
   } catch(e) {
@@ -1800,6 +2097,9 @@ function openHoleZoom(holeNo) {
 }
 function closeHoleZoom() { document.getElementById('holeZoomOverlay').classList.remove('show'); }
 
+/* ==========================================================================
+ * スコア変更（即時UI反映 + キュー経由保存）
+ * ========================================================================== */
 function chgStroke(i, delta) {
   if (APP.isFinalized) { toast('編集不可'); return; }
   var lk = APP.lockStatus[APP.me.playerId];
@@ -1873,18 +2173,27 @@ function haptic() {
 }
 
 var saveTimer = {};
+
+/* ==========================================================================
+ * 【v4.6】新saveScore - 保存成功時の即時再描画 + ローカルキャッシュ更新
+ * ========================================================================== */
 function saveScore(i) {
   clearTimeout(saveTimer[i]);
+  // デバウンスを350ms→250msに短縮（爆速化）
   saveTimer[i] = setTimeout(function() {
-    callGAS('updateScore', [{
+    callGAS_score('updateScore', [{
       playerId: APP.me.playerId,
       hole: i + 1,
       stroke: APP.myScores[i].stroke,
       putt: APP.myScores[i].putt
     }], function(res) {
       if (res && !res.ok && res.msg) toast(res.msg);
-    });
-  }, 350);
+      // ★v4.6: 保存成功時、同伴スコア表を即時再描画
+      scheduleMateTableRefresh();
+      // ★v4.6: ローカルキャッシュも更新（次回起動時の瞬間表示用）
+      BootCache.saveMyScores(APP.me.playerId, APP.myScores);
+    }, null, 'score-' + APP.me.playerId + '-' + i);
+  }, 250);
   updateMyTotal();
   buildHolePicker();
 }
@@ -1918,7 +2227,11 @@ function vsparTag(stroke, par) {
 </script>
 
 <script>
+/* ==========================================================================
+ * タブ切替
+ * ========================================================================== */
 function showTab(t) {
+  APP.currentTab = t;
   document.getElementById('tab-score').classList.toggle('active', t === 'score');
   document.getElementById('tab-lb').classList.toggle('active', t === 'lb');
   document.getElementById('tab-hist').classList.toggle('active', t === 'hist');
@@ -1928,9 +2241,19 @@ function showTab(t) {
   document.getElementById('fab-jump').classList.toggle('hidden', t !== 'score');
   if (t === 'lb') loadLeaderboard();
   if (t === 'hist') { buildHistoryCourseFilter(); loadHistory(); }
-  if (t === 'score') setTimeout(centerCurrentHoleInTable, 200);
+  if (t === 'score') {
+    // スコア表ポーリングを再開
+    loadGroupMatesTable();
+    setTimeout(centerCurrentHoleInTable, 200);
+  } else {
+    // 非スコアタブ → ポーリング停止（バックエンド負荷軽減）
+    if (_mateTimer) { clearTimeout(_mateTimer); _mateTimer = null; }
+  }
 }
 
+/* ==========================================================================
+ * リーダーボード
+ * ========================================================================== */
 function loadLeaderboard() {
   document.getElementById('lb-content').innerHTML = '<div class="loading">集計中...</div>';
   callGAS('getLeaderboard', [], function(data) {
@@ -2049,6 +2372,9 @@ function toggleDetail(id) {
   if (el) el.classList.toggle('hidden');
 }
 
+/* ==========================================================================
+ * 履歴管理
+ * ========================================================================== */
 function buildHistoryCourseFilter() {
   var sel = document.getElementById('hist-course-filter');
   if (!sel) return;
@@ -2205,6 +2531,9 @@ function buildHistoryDetailHtml(detail) {
     '<div class="hist-detail-table-wrap"><table>' + headRow + parRow + memberRows + '</table></div>';
 }
 
+/* ==========================================================================
+ * 確定保存 / 手動バックアップ
+ * ========================================================================== */
 function finishRound() {
   if (!APP.me || !APP.me.playerId) { toast('プレイヤー情報なし'); return; }
   var playedHoles = APP.myScores.filter(function(s) { return s.stroke > 0; }).length;
@@ -2219,21 +2548,23 @@ function finishRound() {
   }
   if (!confirm(confirmMsg)) return;
   toast('保存中...');
-  callGAS('saveRoundSnapshot', [APP.me.playerId], function(res) {
-    if (!res || !res.ok) {
-      toast(res && res.msg ? res.msg : '保存失敗');
-      return;
-    }
-    var holeLabel = res.playedHoles === 18 ? '18H完了' : (res.playedHoles === 9 ? 'HALF(9H)' : res.playedHoles + 'H');
-    toast('保存完了 (' + res.totalStroke + '打 / ' + holeLabel + ')');
-    haptic();
-    setTimeout(function() {
-      buildHistoryCourseFilter();
-      loadHistory();
-    }, 500);
-  }, function(err) {
-    toast('通信エラー');
-  });
+  gasCall('saveRoundSnapshot', APP.me.playerId)
+    .then(function(res) {
+      if (!res || !res.ok) {
+        toast(res && res.msg ? res.msg : '保存失敗');
+        return;
+      }
+      var holeLabel = res.playedHoles === 18 ? '18H完了' : (res.playedHoles === 9 ? 'HALF(9H)' : res.playedHoles + 'H');
+      toast('保存完了 (' + res.totalStroke + '打 / ' + holeLabel + ')');
+      haptic();
+      setTimeout(function() {
+        buildHistoryCourseFilter();
+        loadHistory();
+      }, 500);
+    })
+    .catch(function(err) {
+      toast('通信エラー');
+    });
 }
 
 function confirmFinishRound() {
@@ -2246,42 +2577,46 @@ function confirmFinishRound() {
   else msg = '現在 ' + playedHoles + '/18 ホール入力済みです。この時点で確定して履歴に保存しますか？';
   openConfirm('スコア確定', msg, function() {
     toast('確定中...');
-    callGAS('saveRoundSnapshot', [APP.me.playerId], function(res) {
-      if (!res || !res.ok) {
-        toast(res && res.msg ? res.msg : '確定失敗');
-        return;
-      }
-      toast('✅ 確定完了 (' + res.totalStroke + '打)');
-      haptic();
-      callGAS('releaseScoreLock', [{
-        playerId: APP.me.playerId,
-        userId: APP.me.userId || '',
-        deviceId: APP.deviceId
-      }], function(){});
-    }, function(err) {
-      toast('通信エラー');
-    });
+    gasCall('saveRoundSnapshot', APP.me.playerId)
+      .then(function(res) {
+        if (!res || !res.ok) {
+          toast(res && res.msg ? res.msg : '確定失敗');
+          return;
+        }
+        toast('✅ 確定完了 (' + res.totalStroke + '打)');
+        haptic();
+        callGAS('releaseScoreLock', [{
+          playerId: APP.me.playerId,
+          userId: APP.me.userId || '',
+          deviceId: APP.deviceId
+        }], function(){});
+      })
+      .catch(function(err) {
+        toast('通信エラー');
+      });
   });
 }
 
 function manualBackupNow() {
   if (!APP.me || !APP.me.playerId) { toast('プレイヤー情報なし'); return; }
   toast('バックアップ中...');
-  callGAS('manualBackup', [{
+  gasCall('manualBackup', {
     roundId: APP.roundId || '',
     playerId: APP.me.playerId,
     userId: APP.me.userId || '',
     note: '手動バックアップ ' + new Date().toLocaleString('ja-JP')
-  }], function(res) {
-    if (!res || !res.ok) {
-      toast(res && res.msg ? res.msg : 'バックアップ失敗');
-      return;
-    }
-    toast('💾 バックアップ完了');
-    haptic();
-  }, function(err) {
-    toast('通信エラー');
-  });
+  })
+    .then(function(res) {
+      if (!res || !res.ok) {
+        toast(res && res.msg ? res.msg : 'バックアップ失敗');
+        return;
+      }
+      toast('💾 バックアップ完了');
+      haptic();
+    })
+    .catch(function(err) {
+      toast('通信エラー');
+    });
 }
 
 function openConfirm(title, body, cb) {
@@ -2300,6 +2635,9 @@ function execConfirm() {
   if (typeof cb === 'function') cb();
 }
 
+/* ==========================================================================
+ * 主催者メニュー
+ * ========================================================================== */
 function openAdmin() {
   document.getElementById('modal-admin').classList.add('show');
   if (APP.adminPass) {
@@ -2397,6 +2735,8 @@ function changeCourse() {
   callGAS('adminSetActiveCourse', [APP.adminPass, cid], function(res) {
     if (!res || !res.ok) { toast('失敗'); return; }
     toast('切替完了');
+    // ★v4.6: コース変更時はBootCacheもクリア
+    BootCache.clear();
     setTimeout(function() { location.reload(); }, 800);
   });
 }
@@ -2440,6 +2780,8 @@ function resetAll() {
     toast('リセット完了');
     localStorage.removeItem('gland_me');
     localStorage.removeItem('gland_player_id');
+    // ★v4.6: 全データリセット時はBootCacheもクリア
+    BootCache.clear();
     setTimeout(function() { location.reload(); }, 1000);
   });
 }
@@ -2463,6 +2805,9 @@ function issueCompQR() {
     '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + escapeHtml(url) + '</div>';
 }
 
+/* ==========================================================================
+ * ガラガラポン抽選
+ * ========================================================================== */
 function openLottery() {
   document.getElementById('lot-result').innerHTML = '';
   var ph;
@@ -2540,6 +2885,9 @@ function executeDraw() {
   });
 }
 
+/* ==========================================================================
+ * PWA案内
+ * ========================================================================== */
 function showPWAGuideIfNeeded() {
   var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   if (isStandalone) return;
@@ -2567,6 +2915,9 @@ function closePWA() {
   localStorage.setItem('gland_pwa_skip_until', String(Date.now() + 24 * 60 * 60 * 1000));
 }
 
+/* ==========================================================================
+ * 共通ユーティリティ
+ * ========================================================================== */
 function toggleScoreSettingsAcc() {
   var acc = document.getElementById('score-settings-acc');
   if (!acc) return;
@@ -2605,6 +2956,9 @@ function updateHeaderDisplay() {
   if (gn && APP.me && APP.me.groupName) gn.textContent = APP.me.groupName;
 }
 
+/* ==========================================================================
+ * 入力モード切替
+ * ========================================================================== */
 function onModeChange(newMode) {
   if (['counter','par_diff','stroke','detail'].indexOf(newMode) < 0) newMode = 'par_diff';
   APP.inputMode = newMode;
@@ -2626,6 +2980,9 @@ function onModeChange(newMode) {
   toast('モード: ' + newMode);
 }
 
+/* ==========================================================================
+ * マイクラブ編集
+ * ========================================================================== */
 function openMyClubEditor() {
   var clubs = (APP.myClubs && APP.myClubs.length) ? APP.myClubs.slice() : PHASE2A_DEFAULT_CLUBS.slice();
   var wrap = document.getElementById('myclub-editor-wrap');
@@ -2701,6 +3058,10 @@ function _closeClubEditor() {
   var w = document.getElementById('myclub-editor-wrap');
   if (w) w.remove();
 }
+
+/* ==========================================================================
+ * ラウンド管理モーダル
+ * ========================================================================== */
 function openRoundManager() {
   document.getElementById('modal-round-mgr').classList.add('show');
   populateCourseDropdowns();
@@ -2816,6 +3177,9 @@ function copyToClip(text) {
   }
 }
 
+/* ==========================================================================
+ * 組分け（D&D）
+ * ========================================================================== */
 function loadAssignRound() {
   var roundId = document.getElementById('rm-assign-round').value;
   var area = document.getElementById('rm-assign-area');
@@ -3028,6 +3392,9 @@ function saveAssignments() {
   });
 }
 
+/* ==========================================================================
+ * 爆速モード(QuickStart)
+ * ========================================================================== */
 function openQuickStart() {
   showQuickStartScreen();
   populateCourseDropdowns();
@@ -3071,6 +3438,9 @@ function proceedToCheckinFromQuick() {
   doAutoCheckin(APP.roundId, document.getElementById('quick-course').value || '');
 }
 
+/* ==========================================================================
+ * QRチェックイン
+ * ========================================================================== */
 async function doAutoCheckin(roundId, courseId) {
   showCheckinScreen();
   document.getElementById('checkin-info').innerHTML = '<div>受付処理中...</div>';
@@ -3167,7 +3537,7 @@ async function performCheckin(roundId, profile) {
 }
 
 /* ==========================================================================
- * 【v4.4 追加】画面リサイズ・回転時にも自動センター追従
+ * 【v4.4】画面リサイズ・回転時の自動センター追従
  * ========================================================================== */
 window.addEventListener('resize', function() {
   if (APP.me && APP.me.playerId) {
@@ -3178,6 +3548,57 @@ window.addEventListener('orientationchange', function() {
   if (APP.me && APP.me.playerId) {
     setTimeout(centerCurrentHoleInTable, 300);
   }
+});
+
+/* ==========================================================================
+ * 【v4.5】離脱時の保存キュー強制送信
+ * keepalive:true により、ページ離脱中でも fetch は最後まで送信完了する
+ * ========================================================================== */
+window.addEventListener('beforeunload', function() {
+  if (SaveQueue.queue.length > 0 || SaveQueue.inflight > 0) {
+    console.log('[BEFORE-UNLOAD] pending:', SaveQueue.queue.length + SaveQueue.inflight);
+  }
+});
+
+/* ==========================================================================
+ * 【v4.6 強化】オフライン/オンライン復帰時の全UIリフレッシュ
+ * - online復帰時、SaveQueueを即起動 → 1.5秒後に全画面データを再取得
+ * - スコアタブ/リーダーボード/履歴それぞれ、現在表示中のものを最新化
+ * ========================================================================== */
+window.addEventListener('online', function() {
+  console.log('[ONLINE] resume queue + UI refresh');
+  toast('🌐 接続復帰 - 同期再開');
+  SaveQueue._pump();
+  // ★v4.6: オンライン復帰時、キュー完了後にUIを全リフレッシュ
+  setTimeout(function() {
+    if (APP.me && APP.me.playerId) {
+      // 自分のスコアをサーバーから再取得（ローカルと差分があれば最新で上書き）
+      callGAS('getMyScores', [APP.me.playerId], function(scores) {
+        if (scores && scores.length >= 18) {
+          APP.myScores = scores;
+          APP.playerScoresMap[APP.me.playerId] = scores;
+          renderHoles();
+          updateMyTotal();
+          BootCache.saveMyScores(APP.me.playerId, scores);
+          console.log('[ONLINE] my scores refreshed');
+        }
+      });
+      // 現在開いているタブに応じてリフレッシュ
+      if (APP.currentTab === 'score') {
+        loadGroupMatesTable();
+      } else if (APP.currentTab === 'lb') {
+        loadLeaderboard();
+      } else if (APP.currentTab === 'hist') {
+        loadHistory();
+      }
+      // バックエンド設定もリフレッシュ（ペリア対象ホール、確定状態など）
+      refreshBootDataInBackground();
+    }
+  }, 1500);  // SaveQueueが捌け終わる目安
+});
+window.addEventListener('offline', function() {
+  console.log('[OFFLINE]');
+  toast('⚠️ オフライン - 復帰時に自動同期');
 });
 
 </script>
