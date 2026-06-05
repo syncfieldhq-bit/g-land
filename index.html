@@ -1662,9 +1662,7 @@ function switchPlayer(idx) {
   if (APP.playerScoresMap[target.playerId]) {
     APP.myScores = APP.playerScoresMap[target.playerId];
     renderHoles();
-    renderPlayerTab
-<script>
-/* ※前段の続き */
+    renderPlayerTab();
 function switchPlayer(idx) {
   if (idx < 0 || idx >= APP.myAssignedPlayers.length) return;
   var target = APP.myAssignedPlayers[idx];
