@@ -3261,19 +3261,19 @@ function loadRoundQR() {
       return; 
     }
 
+   // 3264行目からここを貼り付けてください
     var info = res.roundInfo || {};
-    
-    // 3. 安全なQR表示判定（res.qrImageUrl が空、undefined、あるいは不正な文字列なら「なし」にする）
     var qrUrl = (res.qrImageUrl && typeof res.qrImageUrl === 'string' && res.qrImageUrl.trim().length > 10) ? res.qrImageUrl : null;
+    
     var qrHtml = qrUrl 
-                 ? '<img src="' + escapeHtml(qrUrl) + '" style="width:240px;height:240px;display:block;">' 
-                 : '<div style="padding:40px;color:var(--text-sub);">QR画像未生成</div>';
+      ? '<img src="' + escapeHtml(qrUrl) + '" style="width:240px;height:240px;display:block;">' 
+      : '<div style="padding:40px;color:var(--text-sub);">QR画像未生成</div>';
     
     area.innerHTML = '<div style="background:#fff;padding:14px;border-radius:14px;display:inline-block;">' + qrHtml + '</div>' + 
       '<div style="margin-top:10px;color:var(--gold-bri);font-weight:700;">' +
       escapeHtml(info.roundType || '') + ' / ' + escapeHtml(info.courseName || '') + '</div>' +
       '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + escapeHtml(info.compName || '') + '</div>';
-  });
+    // ここまでが3276行目までの置換内容です
 }
 function copyToClip(text) {
   try {
