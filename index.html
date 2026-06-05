@@ -3274,7 +3274,7 @@ function loadRoundQR() {
       escapeHtml(info.roundType || '') + ' / ' + escapeHtml(info.courseName || '') + '</div>' +
       '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + escapeHtml(info.compName || '') + '</div>';
     // ここまでが3276行目までの置換内容です
-}
+
 function copyToClip(text) {
   try {
     navigator.clipboard.writeText(text).then(function() { toast('✅ コピー'); });
