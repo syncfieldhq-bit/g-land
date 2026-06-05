@@ -1483,12 +1483,19 @@ function enterMain() {
           break;
         }
       }
-      if (changed) {
-        APP.myScores = scores;
-        APP.playerScoresMap[APP.me.playerId] = scores;
-        renderHoles();
-        console.log('[enterMain] scores updated from server');
-      }
+      // 修正版：変更があったときだけ描画し、入力中なら無理に描画しない
+if (changed) {
+  APP.myScores = scores;
+  APP.playerScoresMap[APP.me.playerId] = scores;
+
+  // ユーザーが今まさに操作中（入力フィールドにフォーカスがある等）なら、
+  // 無理やり再描画するとカーソルが飛んだりして重くなるので、
+  // フォーカスがない時だけ再描画する
+  if (document.activeElement.tagName !== 'INPUT') {
+      renderHoles();
+  }
+  console.log('[enterMain] scores updated from server');
+}
       BootCache.saveMyScores(APP.me.playerId, scores);
     }
     setTimeout(centerCurrentHoleInTable, 100);
