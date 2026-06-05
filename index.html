@@ -2903,13 +2903,13 @@ function issueCompQR() {
   if (!compId) { toast('コンペID入力'); return; }
   var url = buildInviteUrl({ comp_id: compId });
   var qr = buildQRImageUrl(url);
-  document.getElementById('adm-comp-qr-area').innerHTML =
+  document.getElementById('adm-comp-qr-area').innerHTML = 
     '<div style="background:#fff;padding:10px;border-radius:10px;text-align:center;margin-top:8px;">' +
-    // 2908行目と2909行目をこれに書き換える
-var qrContent = (qr && qr.trim() !== '' && qr !== 'undefined') ? '<img src="' + qr + '" style="width:180px;height:180px;">' : '<div>QRなし</div>';
-    document.getElementById('adm-comp-qr-area').innerHTML = '<div style="background:#fff;padding:10px;border-radius:10px;text-align:center;margin-top:8px;">' + qrContent + '</div>' + 
-    '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + escapeHtml(url) + '</div>';
-}
+    (qr ? '<img src="' + escapeHtml(qr) + '" style="width:180px;height:180px;">' : '<div>QRなし</div>') +
+    '</div>' +
+    '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + 
+    escapeHtml(url) + 
+    '</div>';
 
 /* ==========================================================================
  * ガラガラポン抽選
