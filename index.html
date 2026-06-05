@@ -1907,15 +1907,22 @@ function autoSaveCurrentHoleIfBlank() {
   saveScoreImmediate(i);
 }
 function saveScoreImmediate(i) {
-  callGAS_score('updateScore', [{
+  // 1. まず画面を即座に最新状態にする（ユーザーには0.1秒で反映される！）
+  renderHoles(); 
+  
+  // 2. ブラウザ内のキャッシュを更新（即時保存）
+  BootCache.saveMyScores(APP.me.playerId, APP.myScores);
+
+  // 3. サーバーへの通信は SaveQueue に放り投げる（「同期中」で止めない！）
+  SaveQueue.add('updateScore', {
     playerId: APP.me.playerId,
     hole: i + 1,
     stroke: APP.myScores[i].stroke,
     putt: APP.myScores[i].putt
-  }], function(res) {
-    // ★v4.6: 即時保存もキャッシュ更新
-    BootCache.saveMyScores(APP.me.playerId, APP.myScores);
-  }, null, 'score-' + APP.me.playerId + '-' + i);
+  }, function(res) {
+    // 成功したときだけ、必要ならコンソールにログを出す
+    console.log('保存完了！ホール: ' + (i + 1));
+  });
 }
 function prevHole() {
   autoSaveCurrentHoleIfBlank();
