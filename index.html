@@ -649,7 +649,6 @@ button.ghost{background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(
 
 <div id="toast" class="toast hidden"></div>
 
-<script>
 /* ==========================================================================
  * G-LAND v4.7 ULTRA-FAST フロントエンド
  * 【v4.7 真の爆速化】
@@ -1454,9 +1453,7 @@ function register() {
     localStorage.setItem('gland_player_id', res.playerId);
   });
 }
-</script>
 
-<script>
 /* ==========================================================================
  * 【v4.7】新enterMain - 段階的読み込み + 同伴メンバーキャッシュ
  * STAGE 1: ローカルキャッシュから即描画（待ち時間ゼロ）
@@ -1662,8 +1659,8 @@ function switchPlayer(idx) {
   if (APP.playerScoresMap[target.playerId]) {
     APP.myScores = APP.playerScoresMap[target.playerId];
     renderHoles();
-    renderPlayerTab();
-function switchPlayer(idx) {
+    renderPlayerTabs(); // ←上のコードの末尾 // 000...や <script> は全部消す 
+  function switchPlayer(idx) { // ←下のコードの続き
   if (idx < 0 || idx >= APP.myAssignedPlayers.length) return;
   var target = APP.myAssignedPlayers[idx];
   var lock = APP.lockStatus[target.playerId];
@@ -2743,9 +2740,7 @@ function execConfirm() {
   closeConfirm();
   if (typeof cb === 'function') cb();
 }
-</script>
 
-<script>
 /* ==========================================================================
  * 主催者メニュー
  * ========================================================================== */
@@ -3621,7 +3616,7 @@ async function performCheckin(roundId, profile) {
 
     // ★遷移を1.2秒に短縮（旧2.5秒）
     setTimeout(function() {
-   enterMain();
+      enterMain();
     }, 1200);
   } catch(err) {
     document.getElementById('checkin-info').innerHTML =
@@ -3689,4 +3684,5 @@ window.addEventListener('offline', function() {
 </body>
 </html>
 
-// <script>window.SERVER_PARAMS = <?!= JSON.stringify(params || {}) ?>;</script>
+<script>window.SERVER_PARAMS = <?!= JSON.stringify(params || {}) ?>;</script>
+
