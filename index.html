@@ -3253,9 +3253,7 @@ function loadRoundQR() {
     console.log("サーバーから届いたデータ:", res); // ←これに書き換える
     if (!res || !res.ok) { area.innerHTML = '<div style="color:#ff8888;">取得失敗</div>'; return; }
     var info = res.roundInfo || {};
-    area.innerHTML =
-      (res.qrImageUrl && res.qrImageUrl.trim() !== '' ? '<img src="' + res.qrImageUrl + '" style="width:240px;height:240px;display:block;">' : '') +
-      '</div>' +
+    area.innerHTML = '<div style="background:#fff;padding:14px;border-radius:14px;display:inline-block;">' + (res.qrImageUrl && res.qrImageUrl.trim() !== '' && res.qrImageUrl !== 'undefined' ? '<img src="' + res.qrImageUrl + '" style="width:240px;height:240px;display:block;">' : '') + '</div>' +
       '<div style="margin-top:10px;color:var(--gold-bri);font-weight:700;">' +
         escapeHtml(info.roundType || '') + ' / ' + escapeHtml(info.courseName || '') +
         (info.compName ? ' / ' + escapeHtml(info.compName) : '') +
