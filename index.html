@@ -3243,18 +3243,31 @@ function createPrivateRound() {
     }, 300);
   });
 }
-
 function loadRoundQR() {
   var roundId = document.getElementById('rm-qr-round').value;
   var area = document.getElementById('rm-qr-display');
+  
+  // 1. ラウンドIDがない場合は空にする
   if (!roundId) { area.innerHTML = ''; return; }
+  
   area.innerHTML = '<div class="loading">読み込み中...</div>';
+  
   callGAS('getRoundCheckinUrl', [roundId], function(res) {
-    if (!res || !res.ok) { area.innerHTML = '<div style="color:#ff8888;">取得失敗</div>'; return; }
+    // 2. データ構造のデバッグ（Consoleを確認して「qrImageUrl」があるか見てください）
+    console.log("DEBUG - サーバーレスポンス:", res);
+    
+    if (!res || !res.ok) { 
+      area.innerHTML = '<div style="color:#ff8888;">取得失敗</div>'; 
+      return; 
+    }
+
     var info = res.roundInfo || {};
-    var qrHtml = (res.qrImageUrl && res.qrImageUrl.trim().length > 5) 
-                 ? '<img src="' + res.qrImageUrl + '" style="width:240px;height:240px;display:block;">' 
-                 : '<div style="padding:20px;">QR画像なし</div>';
+    
+    // 3. 安全なQR表示判定（res.qrImageUrl が空、undefined、あるいは不正な文字列なら「なし」にする）
+    var qrUrl = (res.qrImageUrl && typeof res.qrImageUrl === 'string' && res.qrImageUrl.trim().length > 10) ? res.qrImageUrl : null;
+    var qrHtml = qrUrl 
+                 ? '<img src="' + escapeHtml(qrUrl) + '" style="width:240px;height:240px;display:block;">' 
+                 : '<div style="padding:40px;color:var(--text-sub);">QR画像未生成</div>';
     
     area.innerHTML = '<div style="background:#fff;padding:14px;border-radius:14px;display:inline-block;">' + qrHtml + '</div>' + 
       '<div style="margin-top:10px;color:var(--gold-bri);font-weight:700;">' +
