@@ -1660,7 +1660,7 @@ function switchPlayer(idx) {
     APP.myScores = APP.playerScoresMap[target.playerId];
     renderHoles();
     renderPlayerTabs(); 
-  function switchPlayer(idx) { // ←下のコードの続き
+  function switchPlayer(idx) { 
   if (idx < 0 || idx >= APP.myAssignedPlayers.length) return;
   var target = APP.myAssignedPlayers[idx];
   var lock = APP.lockStatus[target.playerId];
