@@ -2906,8 +2906,8 @@ function issueCompQR() {
   document.getElementById('adm-comp-qr-area').innerHTML =
     '<div style="background:#fff;padding:10px;border-radius:10px;text-align:center;margin-top:8px;">' +
     // 2908行目と2909行目をこれに書き換える
-var imgTag = (qr && qr.trim() !== '') ? '<img src="' + qr + '" style="width:180px;height:180px;">' : '<div>QRなし</div>';
-    document.getElementById('adm-comp-qr-area').innerHTML = '<div style="background:#fff;padding:10px;border-radius:10px;text-align:center;margin-top:8px;">' + imgTag + '</div>' + 
+var qrContent = (qr && qr.trim() !== '' && qr !== 'undefined') ? '<img src="' + qr + '" style="width:180px;height:180px;">' : '<div>QRなし</div>';
+    document.getElementById('adm-comp-qr-area').innerHTML = '<div style="background:#fff;padding:10px;border-radius:10px;text-align:center;margin-top:8px;">' + qrContent + '</div>' + 
     '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + escapeHtml(url) + '</div>';
 }
 
