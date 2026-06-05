@@ -3250,16 +3250,16 @@ function loadRoundQR() {
   if (!roundId) { area.innerHTML = ''; return; }
   area.innerHTML = '<div class="loading">読み込み中...</div>';
   callGAS('getRoundCheckinUrl', [roundId], function(res) {
-    console.log("サーバーから届いたデータ:", res); // ←これに書き換える
     if (!res || !res.ok) { area.innerHTML = '<div style="color:#ff8888;">取得失敗</div>'; return; }
     var info = res.roundInfo || {};
-    area.innerHTML = '<div style="background:#fff;padding:14px;border-radius:14px;display:inline-block;">' + (res.qrImageUrl && res.qrImageUrl.trim() !== '' && res.qrImageUrl !== 'undefined' ? '<img src="' + res.qrImageUrl + '" style="width:240px;height:240px;display:block;">' : '') + '</div>' +
+    var qrHtml = (res.qrImageUrl && res.qrImageUrl.trim().length > 5) 
+                 ? '<img src="' + res.qrImageUrl + '" style="width:240px;height:240px;display:block;">' 
+                 : '<div style="padding:20px;">QR画像なし</div>';
+    
+    area.innerHTML = '<div style="background:#fff;padding:14px;border-radius:14px;display:inline-block;">' + qrHtml + '</div>' + 
       '<div style="margin-top:10px;color:var(--gold-bri);font-weight:700;">' +
-        escapeHtml(info.roundType || '') + ' / ' + escapeHtml(info.courseName || '') +
-        (info.compName ? ' / ' + escapeHtml(info.compName) : '') +
-      '</div>' +
-      '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + escapeHtml(res.url) + '</div>' +
-      '<button class="ghost" style="width:100%;margin-top:10px;" onclick="copyToClip(\'' + escapeHtml(res.url) + '\')">URLをコピー</button>';
+      escapeHtml(info.roundType || '') + ' / ' + escapeHtml(info.courseName || '') + '</div>' +
+      '<div style="font-size:11px;color:var(--text-sub);margin-top:6px;word-break:break-all;">' + escapeHtml(info.compName || '') + '</div>';
   });
 }
 function copyToClip(text) {
